@@ -1,0 +1,3 @@
+$(function() {
+    Gamma.init();
+});

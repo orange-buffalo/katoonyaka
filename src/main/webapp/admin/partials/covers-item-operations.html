@@ -1,0 +1,40 @@
+<md-bottom-sheet class="md-list">
+    <md-list layout="start">
+        <md-item >
+            <md-button >
+                <md-button ng-click="startCoverEditing(selectedCover)">
+                    <md-icon md-svg-icon="edit-button"></md-icon>
+                    <span class="md-inline-list-icon-label">Edit</span>
+                </md-button>
+            </md-button>
+        </md-item>
+
+        <md-item >
+            <md-button >
+                <md-button ng-click="askForDeletionConfirmation(selectedCover)">
+                    <md-icon md-svg-icon="delete-button"></md-icon>
+                    <span class="md-inline-list-icon-label">Delete</span>
+                </md-button>
+            </md-button>
+        </md-item>
+
+        <md-item ng-if="selectedCover.draft">
+            <md-button >
+                <md-button ng-click="publish(selectedCover)">
+                    <md-icon md-svg-icon="publish-button"></md-icon>
+                    <span class="md-inline-list-icon-label">Publish</span>
+                </md-button>
+            </md-button>
+        </md-item>
+
+        <md-item ng-if="!selectedCover.draft">
+            <md-button >
+                <md-button ng-click="unpublish(selectedCover)">
+                    <md-icon md-svg-icon="draftify-button"></md-icon>
+                    <span class="md-inline-list-icon-label">Draftify</span>
+                </md-button>
+            </md-button>
+        </md-item>
+
+    </md-list>
+</md-bottom-sheet>

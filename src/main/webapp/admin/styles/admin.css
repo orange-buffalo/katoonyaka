@@ -1,0 +1,87 @@
+.button-panel {
+    margin: 2em 0;
+    text-align: center;
+}
+
+.button-panel .md-button {
+    margin: 0 1em !important;
+}
+
+.grid-container .dndDraggingSource {
+    display: none;
+}
+
+.grid-container .dndDragging {
+    border: 2px solid #3359d5;
+    opacity: 0.7;
+}
+
+.grid-container .dndPlaceholder {
+    border: 7px dashed #d5d5d5;
+    border-radius: 1em;
+    list-style-type: none;
+    width: 33%;
+    position: relative;
+}
+
+md-card .draft-label {
+    display: inline-block;
+    padding: 0.3em;
+    border-radius: 0.4em;
+    background-color: #dadada;
+    text-transform: uppercase;
+    color: #6d6969;
+    font-weight: bold;
+    margin-right: 0.5em;
+    font-size: 65%;
+}
+
+.grid-container md-card md-card-content {
+    padding: 0;
+}
+
+.grid-container md-card md-card-content .md-toolbar-tools {
+    padding: 0 0.7em;
+    box-sizing: border-box;
+}
+
+.grid-container md-card md-card-content .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-menu-button {
+    margin-right: 1.5em;
+}
+
+.notification md-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 1em;
+}
+
+.top-toolbar {
+    margin-bottom: 0.5em;
+}
+
+.top-toolbar .md-button {
+    margin: 0 5px;
+}
+
+.handiwork-description {
+    max-height: 350px;
+    margin: 0.7em 0;
+}
+
+.uploadcare-dialog-tabs {
+    display: none;
+}
+
+.uploadcare-dialog-tabs-panel {
+    margin-left: 0;
+}
+
+.handiwork-description-content {
+    padding: 15px;
+}

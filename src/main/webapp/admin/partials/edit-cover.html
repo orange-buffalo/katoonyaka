@@ -1,0 +1,61 @@
+<form name="coverForm" class="md-padding" ng-submit="submitCover()">
+
+  <md-content layout="row">
+    <md-input-container>
+      <label>Cover text</label>
+      <input required name="text" ng-model="selectedCover.text">
+
+      <div ng-messages="coverForm.text.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+  </md-content>
+
+  <md-content layout="row">
+    <md-input-container>
+      <label>Horizontal Alignment</label>
+    </md-input-container>
+    <md-input-container>
+      <md-radio-group ng-model="selectedCover.horizontalAlignment">
+        <md-radio-button value="LEFT">Left</md-radio-button>
+        <md-radio-button value="CENTER">Center</md-radio-button>
+        <md-radio-button value="RIGHT">Right</md-radio-button>
+      </md-radio-group>
+    </md-input-container>
+
+    <md-input-container>
+      <label>Vertical Alignment</label>
+    </md-input-container>
+    <md-input-container>
+      <md-radio-group ng-model="selectedCover.verticalAlignment">
+        <md-radio-button value="TOP">Top</md-radio-button>
+        <md-radio-button value="CENTER">Center</md-radio-button>
+        <md-radio-button value="BOTTOM">Bottom</md-radio-button>
+      </md-radio-group>
+    </md-input-container>
+  </md-content>
+
+  <md-content layout="row" layout-align="start start">
+    <md-button uploadcare-widget
+               data-multiple-files="false"
+               data-public-key="uploadcarePublicKey"
+               on-file-uploaded="onPhotoUploaded(fileInfo)"
+               type="button">
+      Choose new cover photo
+    </md-button>
+
+    <div layout="column" layout-align="start start">
+      <a ng-href="http://www.ucarecdn.com/{{ selectedCover.photo.externalId }}/" target="_blank">
+        <img ng-if="selectedCover.photo.externalId"
+             ng-src="http://www.ucarecdn.com/{{ selectedCover.photo.externalId }}/-/resize/100x/">
+      </a>
+    </div>
+
+  </md-content>
+
+  <div class="button-panel">
+    <md-button ng-click="cancelEditing()" type="button">Cancel</md-button>
+    <md-button type="submit" class="md-primary md-raised md-margin">Save</md-button>
+  </div>
+
+</form>

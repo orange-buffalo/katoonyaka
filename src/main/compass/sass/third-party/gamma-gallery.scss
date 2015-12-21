@@ -1,0 +1,86 @@
+.gamma-container {
+  min-height: 200px;
+  overflow: hidden;
+}
+
+.gamma-gallery {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: relative;
+}
+
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+.gamma-gallery:before,
+.gamma-gallery:after {
+  content: " ";
+  display: table;
+}
+
+.gamma-gallery:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+.gamma-gallery {
+    *zoom: 1;
+}
+ */
+
+.gamma-gallery li {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  float: left;
+  padding: 1px;
+}
+
+.gamma-gallery li img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.gamma-description {
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -ms-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+
+  &:hover {
+    opacity: 0.4;
+  }
+}
+
+/* Loaders */
+
+.gamma-loading {
+  background: transparent url(/static/img/loader.gif) no-repeat center center;
+}
+
+/* Make some things unselectable. Remove where selection is needed: */
+
+.gamma-container img,
+.gamma-description {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

@@ -1,0 +1,19 @@
+<div layout="row" layout-align="end center" class="top-toolbar">
+  <md-button class="md-raised"
+             ng-click="refresh()">
+    Refresh
+  </md-button>
+  <md-button class="md-raised md-primary"
+             ng-if="unusedExternalPhotosCount > 0"
+             ng-click="fix()">
+    Clean up the trash
+  </md-button>
+</div>
+
+<md-toolbar class="md-warn" ng-if="unusedExternalPhotosCount > 0">
+  <div class="md-toolbar-tools">
+    We have unused {{ unusedExternalPhotosCount }} files. Totally we have {{ totalExternalPhotosCount }} uploads.
+  </div>
+</md-toolbar>
+
+<div ui-grid="{data: usageData}"></div>

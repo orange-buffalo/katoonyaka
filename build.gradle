@@ -1,0 +1,173 @@
+import groovy.json.JsonBuilder
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'war'
+    id 'java'
+    id 'com.eriwen.gradle.js' version '1.12.1'
+    id 'com.eriwen.gradle.css' version '1.11.1'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile('org.springframework:spring-webmvc:4.1.6.RELEASE') {
+        exclude module: 'commons-logging'
+    }
+    compile('org.springframework:spring-context-support:4.1.6.RELEASE') {
+        exclude module: 'commons-logging'
+    }
+    compile 'org.hibernate:hibernate-validator:5.1.3.Final'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'org.freemarker:freemarker:2.3.22'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'commons-io:commons-io:2.4'
+    compile 'javax.servlet:jstl:1.2'
+    compile 'ch.qos.logback:logback-classic:1.1.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
+    compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.6.0'
+    compile('com.google.apis:google-api-services-oauth2:v1-rev85-1.19.0') {
+        exclude module: 'commons-logging'
+    }
+    compile 'com.jayway.jsonpath:json-path:2.0.0'
+
+    runtime 'org.slf4j:jcl-over-slf4j:1.7.12'
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedCompile 'org.projectlombok:lombok:1.16.4'
+
+    providedCompile ('com.eriwen:gradle-js-plugin:1.12.1') {
+        exclude module: 'closure-compiler'
+    }
+    providedCompile 'com.google.javascript:closure-compiler:v20150505'
+    providedCompile 'com.eriwen:gradle-css-plugin:1.11.1'
+}
+
+sourceCompatibility = 1.7
+
+def jsSourceFolder = "${rootDir}/src/main/js"
+def webStaticFolder = "${buildDir}/tmp/web-static"
+def jsOutputFolder = "${webStaticFolder}/js"
+
+def versionSrc = new File("${rootDir}/src/main/webapp/WEB-INF/templates/global-settings.ftl").text
+def matcher = versionSrc =~ /katoonyakaVersion="(.*)"/
+def katoonyakaVersion = matcher[0][1]
+println "Building Katoonyaka v${katoonyakaVersion}"
+
+def homeJsName = "katoonyaka.home-${katoonyakaVersion}.js"
+def homeJsMinName = "katoonyaka.home-${katoonyakaVersion}.min.js"
+def homeJsMapName = "katoonyaka.home-${katoonyakaVersion}.min.map"
+
+task combineJsHome(type: com.eriwen.gradle.js.tasks.CombineJsTask) {
+    source = ["${jsSourceFolder}/common/imagesloaded.pkgd.js",
+              "${jsSourceFolder}/home/animatescroll.js",
+              "${jsSourceFolder}/home/jquery.transit.min.js",
+              "${jsSourceFolder}/home/katoonyaka.home.js"]
+    dest = file("${jsOutputFolder}/${homeJsName}")
+}
+
+task minifyJsHome(type: com.eriwen.gradle.js.tasks.MinifyJsTask) {
+    source = combineJsHome
+    dest = file("${jsOutputFolder}/${homeJsMinName}")
+    sourceMap = file("${jsOutputFolder}/${homeJsMapName}")
+    closure {
+        warningLevel = 'QUIET'
+    }
+    doLast {
+        file("${jsOutputFolder}/${homeJsMinName}") << "\n//# sourceMappingURL=${homeJsMapName}"
+
+        Map srcMap = new JsonSlurper().parseText( sourceMap.text )
+        srcMap.sources = ["${homeJsName}"]
+        sourceMap.withWriter("UTF-8") { it << new JsonBuilder(srcMap).toPrettyString() }
+    }
+}
+
+def detailsJsName = "katoonyaka.details-${katoonyakaVersion}.js"
+def detailsJsMinName = "katoonyaka.details-${katoonyakaVersion}.min.js"
+def detailsJsMapName = "katoonyaka.details-${katoonyakaVersion}.min.map"
+
+task combineJsDetails(type: com.eriwen.gradle.js.tasks.CombineJsTask) {
+    source = ["${jsSourceFolder}/common/imagesloaded.pkgd.js",
+              "${jsSourceFolder}/details/masonry.pkgd.js",
+              "${jsSourceFolder}/details/photoswipe.js",
+              "${jsSourceFolder}/details/photoswipe-ui-default.js",
+              "${jsSourceFolder}/details/gamma.js",
+              "${jsSourceFolder}/details/katoonyaka.details.js"]
+    dest = file("${jsOutputFolder}/${detailsJsName}")
+}
+
+task minifyJsDetails(type: com.eriwen.gradle.js.tasks.MinifyJsTask) {
+    source = combineJsDetails
+    dest = file("${jsOutputFolder}/${detailsJsMinName}")
+    sourceMap = file("${jsOutputFolder}/${detailsJsMapName}")
+    closure {
+        warningLevel = 'QUIET'
+    }
+    doLast {
+        file("${jsOutputFolder}/${detailsJsMinName}") << "\n//# sourceMappingURL=${detailsJsMapName}"
+
+        Map srcMap = new JsonSlurper().parseText( sourceMap.text )
+        srcMap.sources = ["${detailsJsName}"]
+        sourceMap.withWriter("UTF-8") { it << new JsonBuilder(srcMap).toPrettyString() }
+    }
+}
+
+task prepareJs {
+    dependsOn 'minifyJsHome', 'minifyJsDetails'
+}
+
+def sassSourceFolder = "${rootDir}/src/main/compass/"
+def cssSourceFolder = "${rootDir}/src/main/compass/stylesheets"
+def cssOutputFolder = "${webStaticFolder}/css"
+
+task compileSass(type:Exec) {
+    workingDir "${sassSourceFolder}"
+    commandLine 'C:\\Progs\\Ruby\\bin\\compass.bat', 'compile', 'sass/katoonyaka-*.scss', '--force'
+
+    doLast {
+        def cssFiles = fileTree("${cssSourceFolder}").include('**/*.css')
+        cssFiles.eachWithIndex { cssFile, idx ->
+            def destFileName = cssFile.name[0 .. cssFile.name.lastIndexOf('.') - 1]
+            destFileName = "${destFileName}.${katoonyakaVersion}.css"
+
+            def task = tasks.create(name: "minifyCssFile: ${destFileName}", type: com.eriwen.gradle.css.tasks.MinifyCssTask) {
+                source = cssFile
+                dest = "${cssOutputFolder}/${destFileName}"
+                closure {
+                    compilationLevel = 'SIMPLE_OPTIMIZATIONS'
+                }
+            }
+            println "create task '${task.name}' for ${cssFile.name} -> ${destFileName}"
+        }
+    }
+}
+
+task prepareCss {
+    dependsOn 'compileSass'
+    doLast {
+        tasks.findAll { it.name.startsWith 'minifyCssFile' }.each {
+            it.execute()
+            println "executed ${it.name}"
+        }
+    }
+}
+
+task prepareStaticWebResources {
+    dependsOn 'prepareJs', 'prepareCss'
+}
+
+war {
+    dependsOn 'prepareStaticWebResources'
+
+    webInf {
+        from("${webStaticFolder}") {
+            into "static"
+        }
+    }
+
+    archiveName 'ROOT.war'
+}

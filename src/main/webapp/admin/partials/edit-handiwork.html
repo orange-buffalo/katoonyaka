@@ -1,0 +1,47 @@
+<div flex layout="column">
+<form name="handiworkForm" class="md-padding" ng-submit="submitHandiwork()">
+
+    <md-input-container>
+      <label>Name</label>
+      <input required name="name" ng-model="handiwork.name" ng-change="onNameChange()">
+
+      <div ng-messages="handiworkForm.name.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+
+    <md-input-container>
+      <label>Url</label>
+      <input required name="url" ng-model="handiwork.url" pattern="[0-9a-z-]*">
+
+      <div ng-messages="handiworkForm.url.$error">
+        <div ng-message="required">This is required.</div>
+        <div ng-message="pattern">Small letters and numbers, please.</div>
+      </div>
+    </md-input-container>
+
+    <md-input-container>
+      <label>Etsy listing link</label>
+      <input name="etsyUrl" ng-model="handiwork.etsyUrl">
+    </md-input-container>
+
+    <md-input-container>
+      <label>DaWanda listing link</label>
+      <input name="dawandaUrl" ng-model="handiwork.dawandaUrl">
+    </md-input-container>
+
+  <md-content flex>
+    <md-input-container flex>
+      <label>Description</label>
+      <textarea name="description" ng-model="handiwork.description" columns="1"></textarea>
+    </md-input-container>
+  </md-content>
+
+  <div class="button-panel">
+    <md-button ng-click="cancelEditing()" type="button">Cancel</md-button>
+    <md-button type="submit" class="md-primary md-raised md-margin">Save</md-button>
+  </div>
+
+</form>
+
+</div>

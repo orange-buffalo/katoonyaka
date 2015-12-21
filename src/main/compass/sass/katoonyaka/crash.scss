@@ -1,0 +1,66 @@
+@import "compass/css3";
+
+body {
+  background-color: #5E5757;
+
+  .crash-page {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    .crash-container {
+      color: #e3e3e3;
+      display: inline-block;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      @include transform(translateY(-50%) translateX(-50%));
+
+      .error-code {
+        @include border-radius(50%, 50%);
+        background-color: #C24743;
+        text-align: center;
+        display: inline-block;
+
+        width: 250px;
+        height: 250px;
+        line-height: 200px;
+        font-size: 120px;
+
+        @media #{$small-up} {
+          width: 100px;
+          height: 100px;
+          line-height: 85px;
+          font-size: 50px;
+        }
+
+        @media #{$large-up} {
+          width: 250px;
+          height: 250px;
+          line-height: 200px;
+          font-size: 120px;
+        }
+
+      }
+
+      .error-message {
+        display: inline-block;
+        padding-top: 2em;
+      }
+
+      .home-link {
+        display: inline-block;
+        font-size: 200%;
+        padding: 1em 0 1em 0;
+        text-decoration: underline;
+
+        @media #{$small-only} {
+          font-size: 150%;
+        }
+      }
+
+    }
+  }
+}

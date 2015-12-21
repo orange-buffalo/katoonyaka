@@ -1,0 +1,71 @@
+<div layout="row" layout-align="end center" class="top-toolbar">
+  <md-button ng-click="navigateToHandiworks()">Back to list</md-button>
+  <md-button ng-click="preview()">Preview</md-button>
+  <md-button class="md-raised"
+             uploadcare-widget
+             data-multiple-files="true"
+             data-public-key="uploadcarePublicKey"
+             on-all-uploads-completed="onAllPhotosUploaded()"
+             on-file-uploaded="onPhotoUploaded(fileInfo)">Add Photos</md-button>
+  <md-button class="md-raised" ng-click="confirmDeletion()">Delete</md-button>
+  <md-button class="md-raised" ng-if="handiwork.draft" ng-click="publish()">Publish</md-button>
+  <md-button class="md-raised" ng-if="!handiwork.draft" ng-click="draftify()">Draftify</md-button>
+  <md-button class="md-raised" ng-click="startHandiworkEditing()">Edit</md-button>
+</div>
+
+<md-divider></md-divider>
+
+<h3>{{ handiwork.name }}</h3>
+<div layout="column" layout-align="end end">
+  <a href="{{ handiwork.etsyUrl }}" target="_blank" ng-if="handiwork.etsyUrl">{{ handiwork.etsyUrl }}</a>
+  <a href="{{ handiwork.dawandaUrl }}" target="_blank" ng-if="handiwork.dawandaUrl">{{ handiwork.dawandaUrl }}</a>
+</div>
+
+<md-content class="handiwork-description">
+  <p ng-bind-html="handiwork.description | nl2br"></p>
+</md-content>
+
+<md-divider></md-divider>
+
+<div layout="row"
+     flex
+     layout-wrap
+     class="grid-container"
+     dnd-list="handiwork.photos"
+     dnd-horizontal-list="true"
+     dnd-drop="movePhoto(index, item)">
+
+  <div flex="33"
+       dnd-draggable="photo"
+       ng-repeat="photo in handiwork.photos">
+
+    <md-card>
+      <img
+          ng-src="http://www.ucarecdn.com/{{ photo.externalId }}/-/scale_crop/300x150/center/">
+      <md-card-content>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button"
+                     aria-label="Delete"
+                     ng-click="deletePhoto(photo)">
+            <md-icon md-svg-icon="delete-button"></md-icon>
+          </md-button>
+
+          <span flex></span>
+
+          <span ng-if="isHandiworkCover(photo)"
+                class="draft-label">
+            Cover Photo
+          </span>
+
+          <md-button class="md-icon-button"
+                     aria-label="Actions"
+                     ng-if="photo.id != handiwork.cover.id"
+                     ng-click="setAsCover(photo)">
+            <md-icon md-svg-icon="cover-button"></md-icon>
+          </md-button>
+        </div>
+
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

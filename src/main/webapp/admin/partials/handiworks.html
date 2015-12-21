@@ -1,0 +1,45 @@
+<div layout="row" layout-align="end center" class="top-toolbar">
+  <md-button class="md-raised md-primary"
+             ng-click="startHandiworkCreation()">
+    Add Handiwork
+  </md-button>
+</div>
+
+<md-divider></md-divider>
+
+<div layout="row"
+     flex
+     layout-wrap
+     class="grid-container"
+     dnd-list="handiworks"
+     dnd-drop="moveHandiwork(index, item)">
+
+  <div flex="33"
+       dnd-draggable="handiwork"
+       ng-repeat="handiwork in handiworks">
+
+    <md-card>
+      <img
+          ng-src="http://www.ucarecdn.com/{{handiwork.cover.externalId ? handiwork.cover.externalId : '86946809-2435-4fb3-b7cb-7193958f1756' }}/-/scale_crop/300x150/center/">
+      <md-card-content>
+        <div class="md-toolbar-tools">
+            <span ng-if="handiwork.draft"
+                  class="draft-label">
+              Draft
+            </span>
+
+          <span class="title">{{ handiwork.name }}</span>
+
+          <span flex></span>
+
+          <md-button class="md-icon-button"
+                     aria-label="Details"
+                     ng-click="showHandiwork(handiwork)">
+            <md-icon md-svg-icon="open"></md-icon>
+          </md-button>
+        </div>
+
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
