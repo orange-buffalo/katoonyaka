@@ -6,6 +6,7 @@ plugins {
     id 'java'
     id 'com.eriwen.gradle.js' version '1.12.1'
     id 'com.eriwen.gradle.css' version '1.11.1'
+    id 'com.github.jlouns.cpe' version '0.4.0'
 }
 
 repositories {
@@ -124,9 +125,9 @@ def sassSourceFolder = "${rootDir}/src/main/compass/"
 def cssSourceFolder = "${rootDir}/src/main/compass/stylesheets"
 def cssOutputFolder = "${webStaticFolder}/css"
 
-task compileSass(type:Exec) {
+task compileSass(type:CrossPlatformExec) {
     workingDir "${sassSourceFolder}"
-    commandLine 'C:\\Progs\\Ruby\\bin\\compass.bat', 'compile', 'sass/katoonyaka-*.scss', '--force'
+    commandLine 'compass', 'compile', 'sass/katoonyaka-*.scss', '--force'
 
     doLast {
         def cssFiles = fileTree("${cssSourceFolder}").include('**/*.css')
