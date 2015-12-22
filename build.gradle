@@ -47,7 +47,7 @@ dependencies {
     providedCompile 'com.eriwen:gradle-css-plugin:1.11.1'
 }
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
 def jsSourceFolder = "${rootDir}/src/main/js"
 def webStaticFolder = "${buildDir}/tmp/web-static"

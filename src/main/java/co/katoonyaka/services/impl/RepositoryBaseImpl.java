@@ -62,12 +62,10 @@ public abstract class RepositoryBaseImpl<E extends PortfolioEntity> implements R
 
     @Override
     public E findById(String id) {
-        for (E entity : findAll()) {
-            if (id.equals(entity.getId())) {
-                return entity;
-            }
-        }
-        return null;
+        return findAll().stream()
+                .filter(entity -> id.equals(entity.getId()))
+                .findAny()
+                .orElse(null);
     }
 
     @Override

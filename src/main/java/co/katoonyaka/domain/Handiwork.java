@@ -38,12 +38,10 @@ public class Handiwork extends PortfolioEntity {
     private boolean draft = false;
 
     public Photo getPhoto(String photoId) {
-        for (Photo photo : photos) {
-            if (photoId.equals(photo.getId())) {
-                return photo;
-            }
-        }
-        return null;
+        return photos.stream()
+                .filter(photo -> photoId.equals(photo.getId()))
+                .findFirst()
+                .orElse(null);
     }
 
 }

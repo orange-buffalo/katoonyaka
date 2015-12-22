@@ -4,9 +4,9 @@ import co.katoonyaka.domain.Cover;
 import co.katoonyaka.services.CoverRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CoverRepositoryImpl extends RepositoryBaseImpl<Cover> implements CoverRepository {
@@ -26,14 +26,9 @@ public class CoverRepositoryImpl extends RepositoryBaseImpl<Cover> implements Co
 
     @Override
     public List<Cover> findAllPublished() {
-        List<Cover> allCovers = findAll();
-        List<Cover> covers = new ArrayList<>(allCovers.size());
-        for (Cover cover : allCovers) {
-            if (!cover.getDraft()) {
-                covers.add(cover);
-            }
-        }
-        return covers;
+        return findAll().stream()
+                .filter(cover -> !cover.getDraft())
+                .collect(Collectors.toList());
     }
 
 }

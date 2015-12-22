@@ -1,6 +1,5 @@
 package co.katoonyaka.services.impl;
 
-import co.katoonyaka.domain.Cover;
 import co.katoonyaka.domain.Handiwork;
 import co.katoonyaka.domain.Photo;
 import co.katoonyaka.domain.admin.PhotoUsageItem;
@@ -45,15 +44,14 @@ public class PhotoServiceImpl implements PhotoService {
             photoUsageItems.add(new PhotoUsageItem("Handiwork", handiwork.getName(), count));
         }
 
-        for (Cover cover : coverRepository.findAll()) {
-            if (cover.getPhoto() != null && cover.getPhoto().getExternalId() != null) {
-                if (registeredExternalIds.contains(cover.getPhoto().getExternalId())) {
+        coverRepository.findAll().stream()
+                .filter(cover -> cover.getPhoto() != null && cover.getPhoto().getExternalId() != null)
+                .filter(cover -> registeredExternalIds.contains(cover.getPhoto().getExternalId()))
+                .forEach(cover -> {
                     unusedExernalIds.remove(cover.getPhoto().getExternalId());
 
                     photoUsageItems.add(new PhotoUsageItem("Cover", cover.getText(), 1));
-                }
-            }
-        }
+                });
 
         return PhotoUsageStatistics.builder()
                 .photosUsage(photoUsageItems)

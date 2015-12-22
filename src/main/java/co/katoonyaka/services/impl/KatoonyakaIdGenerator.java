@@ -12,19 +12,17 @@ public class KatoonyakaIdGenerator implements IdGenerator {
 
     @Override
     public String generateId(List<? extends PortfolioEntity> entities) {
-        boolean exists = true;
-        String newId = null;
-        while (exists) {
-            newId = RandomStringUtils.randomAlphabetic(5);
+        while (true) {
+            final String id = RandomStringUtils.randomAlphabetic(5);
 
-            exists = false;
-            for (PortfolioEntity entity : entities) {
-                if (newId.equals(entity.getId())) {
-                    exists = true;
-                    break;
-                }
+            boolean idUsed = entities.stream()
+                    .filter(entity -> id.equals(entity.getId()))
+                    .findAny()
+                    .isPresent();
+
+            if (!idUsed) {
+                return id;
             }
         }
-        return newId;
     }
 }
