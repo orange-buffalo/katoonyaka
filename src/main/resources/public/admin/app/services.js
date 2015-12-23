@@ -283,7 +283,7 @@ var ConfigService = function($http, $q, blockUI) {
 
             $http({
                 method: 'GET',
-                url: '/admin/config/' + configProperty
+                url: '/admin/api/config/' + configProperty
             }).then(function successCallback(response) {
                 blockUI.stop();
                 if (resolve) {
