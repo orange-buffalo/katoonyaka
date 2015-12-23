@@ -4,6 +4,7 @@ import co.katoonyaka.services.ConfigService;
 import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
+@Component
 public class SecurityInterceptor extends HandlerInterceptorAdapter {
 
     private static final String AUTH_SESSION_KEY = "user.auth";
