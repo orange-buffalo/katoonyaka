@@ -2,7 +2,6 @@ package co.katoonyaka.services.impl.storage;
 
 import co.katoonyaka.domain.Cover;
 import co.katoonyaka.domain.Handiwork;
-import co.katoonyaka.services.IdGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +23,10 @@ import java.util.zip.GZIPOutputStream;
 @Lazy(false)
 public class JsonDataStorage {
 
-    private static final String DATA_FILE_PATH = System.getenv("katoonyaka.home") + "/storage.dat";
+    private static final String DATA_FILE_PATH = System.getenv("KATOONYAKA_HOME") + "/storage.dat";
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @Autowired
-    private IdGenerator idGenerator;
 
     @Getter
     private List<Handiwork> handiworks;
