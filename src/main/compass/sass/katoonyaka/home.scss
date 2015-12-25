@@ -103,6 +103,7 @@
 
     .header-text {
       position: relative;
+      opacity: 0;
       @include transform(translateY(-50%));
 
       &.top {

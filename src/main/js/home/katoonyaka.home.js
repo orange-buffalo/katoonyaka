@@ -196,15 +196,14 @@ $(function() {
         $children.each(function () {
             var $cover = $(this);
             $cover.css("background",
-                "url(http://www.ucarecdn.com/" + $cover.data("photo") + "/-/resize/" + coverWidth + "x/) no-repeat center center");
+                "url(http://www.ucarecdn.com/" + $cover.data("photo") + "/-/resize/" + coverWidth + "x/-/progressive/yes/) no-repeat center center");
             $cover.css("background-size", "cover");
 
             $covers.push($cover);
-            //$cover.transition({x: '100%'}, 0);
             $cover.transition({opacity: '0'}, 0);
+            $cover.children(".header-text").transition({opacity: '1'}, 0);
         });
 
-        //$covers[0].transition({x: '0%'}, 0);
         $covers[0].transition({opacity: '1'}, 0);
         if ($covers.length > 1) {
             setInterval(updateCover, 3500);
@@ -219,16 +218,8 @@ $(function() {
             currentCover = 0;
         }
 
-        //$covers[currentCover].transition({x: '0%'}, transitionTime, transitionEasing);
-        //$previousCover.transition({x: '-100%'}, transitionTime, transitionEasing);
-
         $covers[currentCover].transition({opacity: '1'}, transitionTime, transitionEasing);
         $previousCover.transition({opacity: '0'}, transitionTime, transitionEasing);
-
-        //setTimeout(function() {
-        //    //$previousCover.transition({x: '100%'}, 0);
-        //    $previousCover.transition({opacity: '100%'}, 0);
-        //}, transitionTime + 1);
     }
 
 });
