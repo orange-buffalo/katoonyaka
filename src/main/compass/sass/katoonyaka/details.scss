@@ -7,7 +7,6 @@ body {
 .handiwork-description-container {
   @include box-sizing(border-box);
   padding: 0.5em 1em;
-  margin-bottom: 2em;
 
   @extend .row;
 
@@ -40,7 +39,8 @@ $link-color: #E14343;
 .handiwork-links {
   margin: 0 0 2em 0;
   text-align: right;
-  padding: 0 2em;
+  padding: 0 1em;
+  @extend .row;
 
   a {
     display: inline-block;
