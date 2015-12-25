@@ -190,11 +190,13 @@ $(function() {
     var currentCover = 0;
     var transitionTime = 700;
     var transitionEasing = 'linear';
+    var coverWidth = $(window).width();
+    coverWidth = (coverWidth > 2048) ? 2048 : coverWidth;
     if ($children.length > 0) {
         $children.each(function () {
             var $cover = $(this);
             $cover.css("background",
-                "url(http://www.ucarecdn.com/" + $cover.data("photo") + "/-/resize/" + $(window).width() + "x/) no-repeat center center");
+                "url(http://www.ucarecdn.com/" + $cover.data("photo") + "/-/resize/" + coverWidth + "x/) no-repeat center center");
             $cover.css("background-size", "cover");
 
             $covers.push($cover);
