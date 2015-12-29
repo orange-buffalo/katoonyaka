@@ -50,6 +50,8 @@
     <script src="/static/js/katoonyaka.handiworks.list.js"></script>
     <script src="/static/js/katoonyaka.scroll.js"></script>
     <script src="/static/js/katoonyaka.handiwork.summary.js"></script>
+    <script src="/static/js/utils.js"></script>
+    <script src="/static/js/imagesloaded.js"></script>
     <script src="/static/js/katoonyaka.js"></script>
 
 

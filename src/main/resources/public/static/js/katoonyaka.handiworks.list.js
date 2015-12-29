@@ -1,12 +1,16 @@
 var KatoonyakaHandiworksList = function ($compile) {
     return {
-
-        // This means the directive can be used as an attribute only. Example <div data-my-slide="variable"> </div>
         restrict: "A",
 
-        // This is the functions that gets executed after Angular has compiled the html
-        link: function (scope, element, attrs) {
+        link: function (scope, element) {
             var $list = $(element);
+
+            function _compileChildren() {
+                $list.children().each(function (index, value) {
+                    $compile(value)(scope);
+                });
+                $(window).trigger("scroll");
+            }
 
             var photos = [];
             $list.children().each(function (index, value) {
@@ -35,12 +39,13 @@ var KatoonyakaHandiworksList = function ($compile) {
                 },
                 template: function (photo) {
                     var summaryContainer = photo.content.find('.handiwork-summary-container');
+                    photo.content.addClass("pending");
                     photo.content.height(photo.displayHeight);
                     photo.content.css({
                         'margin-right': photo.marginRight
                     });
                     var thumb = summaryContainer.find('img');
-                    thumb.attr('src', photo.src);
+                    thumb.attr("data-thumb-src", photo.src);
                     thumb.width(photo.displayWidth);
                     return photo.content[0].outerHTML;
                 },
@@ -51,15 +56,10 @@ var KatoonyakaHandiworksList = function ($compile) {
 
             $(window).resize(function () {
                 $list.empty().justifiedImages('displayImages');
+                _compileChildren();
             });
 
-            $list.children().each(function (index, value) {
-                $compile(value)(scope);
-            });
-
-
-
-
+            _compileChildren();
         }
     }
 };

@@ -10,7 +10,6 @@ var KatoonyakaScroll = function () {
             var $scrollBar = $("<div class='scrollbar'><div class='handle'></div></div>");
             $frame.append($scrollBar);
 
-
             $frame.sly({
                 speed: 300,
                 //easing: 'easeOutExpo', //todo ?
@@ -21,8 +20,12 @@ var KatoonyakaScroll = function () {
                 clickBar: 1
             });
 
-            $(window).resize(function () {
+            $(window).on("DOMContentLoaded load resize", function () {
                 $frame.sly("reload");
+            });
+
+            $frame.sly("on", "move", function() {
+                $(window).trigger("scroll");
             });
         }
     }

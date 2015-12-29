@@ -114,8 +114,13 @@ body {
   .handiwork-summary {
     display: inline-block;
     overflow: hidden;
+    @include box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.69));
+    @include transition(all 600ms ease-in-out);
+    opacity: 1;
 
-    @include box-shadow(1px 1px 5px 0px rgba(0,0,0,0.69));
+    &.pending {
+      opacity: 0;
+    }
 
     .handiwork-summary-container {
       position: relative;

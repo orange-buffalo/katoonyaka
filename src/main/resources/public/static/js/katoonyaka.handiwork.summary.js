@@ -1,15 +1,27 @@
 var KatoonyakaHandiworkSummary = function () {
     return {
-
-        // This means the directive can be used as an attribute only. Example <div data-my-slide="variable"> </div>
         restrict: "A",
+        scope: {
+        },
+        link: function (scope, element) {
+            var $element = $(element);
 
-        // This is the functions that gets executed after Angular has compiled the html
-        link: function (scope, element, attrs) {
+            function _loadThumbnail() {
+                var $thumb = $element.find("img");
+                $thumb.attr("src", $thumb.data("thumbSrc"));
+                $element.imagesLoaded(function () {
+                    $element.removeClass("pending");
+                });
+            }
 
-          // console.log("sdsdsda");
-              //console.log(element);
+            scope.visible = false;
 
+            $(window).on("DOMContentLoaded load resize scroll", function() {
+                if (!scope.visible && isElementVisibleInViewport(element)) {
+                    scope.visible = true;
+                    _loadThumbnail();
+                }
+            });
         }
     }
 };
