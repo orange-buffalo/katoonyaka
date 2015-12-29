@@ -23,7 +23,7 @@ public class ClientController {
     public String home(Model model) {
         model.addAttribute("handiworks", handiworkRepository.findAllPublished());
         model.addAttribute("covers", coverRepository.findAllPublished());
-        return "home";
+        return "katoonyaka-template";
     }
 
     @RequestMapping("/portfolio/{link}")

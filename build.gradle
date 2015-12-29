@@ -151,7 +151,7 @@ def cssOutputFolder = "${webStaticFolder}/css"
 
 task compileSass(type:CrossPlatformExec) {
     workingDir "${sassSourceFolder}"
-    commandLine 'compass', 'compile', 'sass/katoonyaka-*.scss', '--force'
+    commandLine 'compass', 'compile', 'sass/katoonyaka*.scss', '--force'
 
     doLast {
         def cssFiles = fileTree("${cssSourceFolder}").include('**/*.css')
