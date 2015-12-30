@@ -30,6 +30,7 @@ angular.module('katoonyaka',
 .directive("katoonyakaHandiworksList", ["$compile", KatoonyakaHandiworksList])
 .directive("katoonyakaScroll", ["$compile", KatoonyakaScroll])
 .directive("katoonyakaHandiworkSummary", [KatoonyakaHandiworkSummary])
+.directive("katoonyakaCoverSlides", ['$interval', KatoonyakaCoverSlides])
 
 
 ;
