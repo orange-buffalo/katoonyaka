@@ -26,7 +26,13 @@
                    class="handiwork-summary">
                     <div class="handiwork-summary-container">
                         <img class="handiwork-thumb"/>
-                        <span class="name">${handiwork.name}</span>
+                        <div class="handiwork-description">
+                            <div class="handiwork-description-wrapper">
+                               <h3>${handiwork.name}</h3>
+                                <hr/>
+                                <p>${handiwork.summary}</p>
+                            </div>
+                        </div>
                     </div>
                 </a>
             </#list>
@@ -52,6 +58,7 @@
     <script src="/static/js/katoonyaka.handiwork.summary.js"></script>
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/imagesloaded.js"></script>
+    <script src="/static/js/clamp.js"></script>
     <script src="/static/js/katoonyaka.js"></script>
 
 

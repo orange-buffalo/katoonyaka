@@ -44,4 +44,9 @@ public class Handiwork extends PortfolioEntity {
                 .orElse(null);
     }
 
+    public String getSummary() {
+        // todo from data
+        return description.replaceAll("\\{ Application & Inspiration \\}\\s+", "");
+    }
+
 }
