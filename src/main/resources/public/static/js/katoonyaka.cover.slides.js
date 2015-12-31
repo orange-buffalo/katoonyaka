@@ -35,8 +35,6 @@ var KatoonyakaCoverSlides = function ($interval) {
             });
 
             $slider.imagesLoaded({background: ".cover-slide"}, function () {
-                console.log("done");
-
                 _changeSlide();
 
                 timeoutId = $interval(function () {

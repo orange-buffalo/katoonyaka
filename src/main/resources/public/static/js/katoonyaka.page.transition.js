@@ -6,13 +6,9 @@ var KatoonyakaPageTransition = function ($rootScope, $compile) {
 
             $rootScope.$on('pageTransitionRequested', function (event, newPageData) {
 
-
-
                 window.document.title = newPageData.title;
 
                 var $currentContent = container.children().eq(0);
-
-                console.log($currentContent);
 
                 var $newContent = $("<div class='wrapper pending'>")
                     .append($(newPageData.htmlContent));
@@ -23,16 +19,16 @@ var KatoonyakaPageTransition = function ($rootScope, $compile) {
 
                 container.append($newContent);
 
+                var $window = $(window);
+
+                $rootScope.scrollTo($window.height());
+
                 $newContent.transition({ translate: "0" }, 700, function() {
                     $currentContent.remove();
                     $newContent.removeClass("pending");
                     $compile($newContent[0])(scope);
-                    $(window).trigger("DOMContentLoaded");
+                    $window.trigger("DOMContentLoaded");
                 });
-
-
-
-
 
             });
         }

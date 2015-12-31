@@ -3,8 +3,6 @@
 
         $rootScope.$on("$locationChangeStart", function (angularEvent, newUrl, oldUrl) {
             if (oldUrl && oldUrl !== newUrl) {
-                console.log("change to: " + newUrl + " from " + oldUrl);
-
                 $http({
                     method: "GET",
                     url: newUrl,
@@ -12,52 +10,27 @@
                         "Content-Type": "application/json"
                     }
                 }).then(function successCallback(response) {
-                    console.log("done");
-                    console.log(response.data);
-
                     $rootScope.$broadcast("pageTransitionRequested", response.data);
 
-                }, function errorCallback(response) {
-                    console.log("error");
+                }, function errorCallback() {
+                    console.log("error");  //todo
                 });
-
-
             }
         });
 
     };
 
-    function _initKatoonyakaAdmin() {
-        console.log("inited fro func");
-
-    }
-
     function _configKatoonyaka($locationProvider) {
         $locationProvider.html5Mode(true);
     }
 
-    angular.module("katoonyaka",
-        []
-        )
-        //.filter('nl2br', function() {
-        //    return function (text) {
-        //        return text ? text.replace(/\n/g, '<br>') : '';
-        //    }
-        //})
-        //.directive('uploadcareWidget', UploadcareWidget)
+    angular.module("katoonyaka", [])
         .config(["$locationProvider", _configKatoonyaka])
-        //.factory(factories)
         .controller("KatoonyakaController", ["$scope", "$rootScope", "$http", KatoonyakaController])
-        .run(_initKatoonyakaAdmin)
-
-
         .directive("katoonyakaHandiworksList", ["$compile", KatoonyakaHandiworksList])
         .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
         .directive("katoonyakaHandiworkSummary", [KatoonyakaHandiworkSummary])
         .directive("katoonyakaCoverSlides", ["$interval", KatoonyakaCoverSlides])
         .directive("katoonyakaInternalLink", ["$location", KatoonyakaInternalLink])
-        .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition])
-
-
-    ;
+        .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition]);
 })();
