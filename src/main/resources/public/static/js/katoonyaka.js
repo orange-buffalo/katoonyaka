@@ -12,8 +12,10 @@
                         "Content-Type": "application/json"
                     }
                 }).then(function successCallback(response) {
-                                         console.log("done");
+                    console.log("done");
                     console.log(response.data);
+
+                    $rootScope.$broadcast("pageTransitionRequested", response.data);
 
                 }, function errorCallback(response) {
                     console.log("error");
@@ -50,10 +52,11 @@
 
 
         .directive("katoonyakaHandiworksList", ["$compile", KatoonyakaHandiworksList])
-        .directive("katoonyakaScroll", ["$compile", KatoonyakaScroll])
+        .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
         .directive("katoonyakaHandiworkSummary", [KatoonyakaHandiworkSummary])
         .directive("katoonyakaCoverSlides", ["$interval", KatoonyakaCoverSlides])
         .directive("katoonyakaInternalLink", ["$location", KatoonyakaInternalLink])
+        .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition])
 
 
     ;

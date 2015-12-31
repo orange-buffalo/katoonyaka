@@ -49,7 +49,7 @@ public abstract class AbstractClientController {
         String htmlContent = mockResponse.getContentAsString();
 
         String title = getTitle(model, request);
-        return new ClientResponseData(title, htmlContent);
+        return new ClientResponseData("Katoonyaka. " + title, htmlContent);
     }
 
 }

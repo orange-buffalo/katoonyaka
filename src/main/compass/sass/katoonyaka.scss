@@ -35,9 +35,25 @@ body {
 }
 
 .main-content {
-  padding: 2em 10em; //todo media query
-  min-height: 200vh;
+  position: relative;
   background: rgba($main-bg-color, 0.95);
+
+  .wrapper {
+    padding: 2em 10em; //todo media query
+    min-height: 200vh;
+    @include box-sizing(content-box);
+    z-index: 10;
+
+    &.pending {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include box-sizing(border-box);
+      z-index: 20;
+      width: 100%;
+    }
+  }
+
 }
 
 ///// tood justify

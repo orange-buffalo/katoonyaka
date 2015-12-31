@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Katoonyaka. ${responseData.title}</title>
+        <title>${responseData.title}</title>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1">
         <link rel="stylesheet" href="/static/css/katoonyaka.${katoonyakaVersion}.css">
         <base href="/">
@@ -19,9 +19,11 @@
     </#if>
     </div>
 
-    <div data-katoonyaka-scroll>
+    <div data-katoonyaka-scroll data-katoonyaka-page-transition>
         <section class="main-content">
-            ${responseData.htmlContent}
+            <div class="wrapper">
+                ${responseData.htmlContent}
+            </div>
         </section>
     </div>
 
@@ -32,11 +34,13 @@
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/imagesloaded.js"></script>
     <script src="/static/js/clamp.js"></script>
+    <script src="/static/js/jquery.transit.js"></script>
     <script src="/static/js/katoonyaka.handiworks.list.js"></script>
     <script src="/static/js/katoonyaka.scroll.js"></script>
     <script src="/static/js/katoonyaka.handiwork.summary.js"></script>
     <script src="/static/js/katoonyaka.cover.slides.js"></script>
     <script src="/static/js/katoonyaka.internal.link.js"></script>
+    <script src="/static/js/katoonyaka.page.transition.js"></script>
     <script src="/static/js/katoonyaka.js"></script>
 
     </body>
