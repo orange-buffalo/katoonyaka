@@ -1,15 +1,43 @@
-$nav-bar-position: fixed;
-
-@import "katoonyaka/common";
+@import "foundation/normalize";
+@import "foundation/_settings";
+@import "foundation/components/grid";
+@import "compass/typography/links/unstyled-link";
+@import "compass/css3";
+@import url(http://fonts.googleapis.com/css?family=Arvo|Fjord+One);
 
 $main-bg-color: #333333;
 $first-secondary-color: #e97174;
 $second-secondary-color: #94E1E9;
 
+html, body {
+  font-size: 16px !important;
+
+  @media #{$medium-only} {
+    font-size: 16px !important;
+  }
+
+  @media #{$large-only} {
+    font-size: 17px !important;
+  }
+
+  @media #{$xlarge-only} {
+    font-size: 18px !important;
+  }
+}
+
+a {
+  @include unstyled-link;
+}
+
 body {
   background-color: $main-bg-color;
   overflow: hidden;
   color: white;
+}
+
+h1 {
+  margin: 0 0 0.67em 0;
+  text-align: center;
 }
 
 .cover-slides {
@@ -37,7 +65,7 @@ body {
 }
 
 @mixin katoonyaka-shadow {
-   @include box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.65));
+  @include box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.65));
 }
 
 .main-content {
