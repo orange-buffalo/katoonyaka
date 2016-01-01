@@ -1,8 +1,11 @@
-var KatoonyakaHandiworksList = function ($rootScope, $compile) {
+var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
     return {
         restrict: "A",
 
-        scope: {},
+        scope: {
+            itemContainerClass: "=",
+            itemThumbClass: "="
+        },
 
         link: function (scope, $list) {
 
@@ -39,20 +42,18 @@ var KatoonyakaHandiworksList = function ($rootScope, $compile) {
                         return {width: photo.width, height: photo.height};
                     },
                     template: function (photo) {
-                        var summaryContainer = photo.content.find('.handiwork-summary-container');
                         photo.content.addClass("pending");
                         photo.content.height(photo.displayHeight);
                         photo.content.css({
                             'margin-right': photo.marginRight
                         });
-                        var thumb = summaryContainer.find('img');
+                        var thumb = photo.content.find("img");
                         thumb.attr("data-thumb-src", photo.src);
                         thumb.width(photo.displayWidth);
                         return photo.content[0].outerHTML;
                     },
-                    imageContainer: 'handiwork-summary',
-                    imageSelector: 'handiwork-thumb'
-
+                    imageContainer: scope.itemContainerClass,
+                    imageSelector: scope.itemThumbClass
                 });
             }
 

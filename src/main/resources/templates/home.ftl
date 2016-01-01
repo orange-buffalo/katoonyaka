@@ -1,15 +1,17 @@
 <h1>Portfolio</h1>
 <div id="handiwork-list"
      class="handiworks-list"
-     data-katoonyaka-handiworks-list>
+     katoonyaka-justified-gallery
+     data-item-container-class="handiwork-summary"
+     data-item-thumb-class="handiwork-thumb">
 <#list handiworks as handiwork>
     <a href="/portfolio/${handiwork.url}"
        ng-non-bindable
-       data-katoonyaka-internal-link
+       katoonyaka-internal-link
        data-base-url="/photos/${handiwork.url}/${handiwork.cover.id}/"
        data-width="${handiwork.cover.width?c}"
        data-height="${handiwork.cover.height?c}"
-       data-katoonyaka-handiwork-summary
+       katoonyaka-handiwork-summary
        class="handiwork-summary">
         <div class="handiwork-summary-container">
             <img class="handiwork-thumb"/>

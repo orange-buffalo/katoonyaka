@@ -4,6 +4,8 @@
 @import "compass/typography/links/unstyled-link";
 @import "compass/css3";
 @import url(http://fonts.googleapis.com/css?family=Arvo|Fjord+One);
+@import "third-party/photoswipe";
+@import "third-party/ps-default-skin";
 
 $main-bg-color: #333333;
 $first-secondary-color: #e97174;
@@ -100,14 +102,27 @@ h1 {
 
 ///// tood justify
 
-.handiworks-list {
+.justify-gallery {
   .picrow {
     white-space: nowrap;
   }
 
-  .handiwork-summary {
+  .gallery-item {
     display: inline-block;
     overflow: hidden;
+
+    .gallery-thumb {
+      position: relative;
+    }
+  }
+
+}
+
+.handiworks-list {
+  @extend .justify-gallery;
+
+  .handiwork-summary {
+    @extend .gallery-item;
     @include katoonyaka-shadow;
     @include transition(all 600ms ease-in-out);
     opacity: 1;
@@ -209,7 +224,7 @@ h1 {
       }
 
       .handiwork-thumb {
-        position: relative;
+        @extend .gallery-thumb;
       }
     }
   }
@@ -247,6 +262,63 @@ h1 {
 
   .slidee {
     padding-top: 100vh;
+  }
+}
+
+// Details page
+
+.handiwork-details {
+  @include grid-row();
+  text-align: justify;
+
+  .text-content {
+
+    @media #{$small-up} {
+      @include grid-column(12);
+    }
+
+    @media #{$xlarge-up} {
+      @include grid-column(4);
+    }
+
+    .handiwork-description-area {
+      .handiwork-description-part {
+        h2 {
+
+        }
+      }
+    }
+
+    .handiwork-links {
+
+    }
+  }
+
+  .photo-content {
+    @media #{$small-up} {
+      @include grid-column(12);
+    }
+
+    @media #{$xlarge-up} {
+      @include grid-column(8);
+    }
+
+    .handiwork-photo-gallery {
+      @extend .justify-gallery;
+
+      .handiwork-photo {
+        @extend .gallery-item;
+        @include transition(all 400ms);
+
+        .handiwork-photo-thumb {
+          @extend .gallery-thumb;
+        }
+
+        &.pending {
+          opacity: 0;
+        }
+      }
+    }
   }
 }
 

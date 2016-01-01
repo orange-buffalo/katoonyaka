@@ -28,10 +28,12 @@
         .config(["$locationProvider", _configKatoonyaka])
         .run(["$rootScope", KatoonyakaBootstrap])
         .controller("KatoonyakaController", ["$scope", "$rootScope", "$http", KatoonyakaController])
-        .directive("katoonyakaHandiworksList", ["$rootScope", "$compile", KatoonyakaHandiworksList])
+        .directive("katoonyakaJustifiedGallery", ["$rootScope", "$compile", KatoonyakaJustifiedGallery])
         .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
         .directive("katoonyakaHandiworkSummary", ["$rootScope", KatoonyakaHandiworkSummary])
+        .directive("katoonyakaHandiworkPhoto", [KatoonyakaHandiworkPhoto])
         .directive("katoonyakaCoverSlides", ["$rootScope", "$interval", KatoonyakaCoverSlides])
         .directive("katoonyakaInternalLink", ["$rootScope", "$location", KatoonyakaInternalLink])
-        .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition]);
+        .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition])
+        .directive("katoonyakaPhotoswipe", ["$rootScope", KatoonyakaPhotoswipe]);
 })();
