@@ -4,12 +4,9 @@ var KatoonyakaScroll = function ($rootScope) {
 
         scope: {},
 
-        link: function (scope, element) {
-            var $window = $(window);
+        link: function (scope, $frame) {
             scope.scrollBarVisible = false;
-            scope.scrollBarStartPosition = $window.height();
 
-            var $frame = $(element);
             $frame.addClass("frame");
             $frame.children().wrapAll("<div class='slidee'/>");
 
@@ -29,32 +26,28 @@ var KatoonyakaScroll = function ($rootScope) {
                 })
                 .init();
 
-
-
-            $window.on("DOMContentLoaded load resize", function () {
-                scope.scrollBarStartPosition = $window.height();
-                sly.reload();
-            });
+            $rootScope.$on("katoonyaka::layoutChange", sly.reload);
+            $rootScope.$on("katoonyaka::pageTransitionFinished", sly.reload);
 
             sly.on("move", function () {
-                $window.trigger("scroll");
+                $rootScope.$broadcast("katoonyaka::scroll", sly.pos);
 
-                if (!scope.scrollBarVisible && sly.pos.cur > scope.scrollBarStartPosition) {
+                if (!scope.scrollBarVisible && sly.pos.cur > $rootScope.viewportHeight) {
                     $scrollBar.transition({opacity: 1}, 400);
                     scope.scrollBarVisible = true;
                 }
 
-                if (scope.scrollBarVisible && sly.pos.cur < scope.scrollBarStartPosition) {
+                if (scope.scrollBarVisible && sly.pos.cur < $rootScope.viewportHeight) {
                     $scrollBar.transition({opacity: 0}, 400);
                     scope.scrollBarVisible = false;
                 }
-
 
             });
 
             $rootScope.scrollTo = function (pos) {
                 sly.slideTo(pos);
             }
+
         }
     }
 };

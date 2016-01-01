@@ -1,9 +1,8 @@
-var KatoonyakaHandiworkSummary = function () {
+var KatoonyakaHandiworkSummary = function ($rootScope) {
     return {
         restrict: "A",
         scope: {},
-        link: function (scope, element) {
-            var $element = $(element);
+        link: function (scope, $element) {
 
             function _loadThumbnail() {
                 var textToClamp = $element.find("p")[0];
@@ -16,14 +15,24 @@ var KatoonyakaHandiworkSummary = function () {
                 });
             }
 
-            scope.visible = false;
-
-            $(window).on("DOMContentLoaded load resize scroll", function () {
-                if (!scope.visible && isElementVisibleInViewport(element)) {
+            function _checkVisibility() {
+                if (!scope.visible && isElementVisibleInViewport($element)) {
                     scope.visible = true;
                     _loadThumbnail();
                 }
+            }
+
+            scope.visible = false;
+
+            var unregisterScrollListener = $rootScope.$on("katoonyaka::scroll", _checkVisibility);
+
+            _checkVisibility();
+
+            $element.on("$destroy", function () {
+                unregisterScrollListener();
+                scope.$destroy();
             });
+
         }
     }
 };

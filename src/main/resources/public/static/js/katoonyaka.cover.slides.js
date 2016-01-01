@@ -1,12 +1,11 @@
-var KatoonyakaCoverSlides = function ($interval) {
+var KatoonyakaCoverSlides = function ($rootScope, $interval) {
     return {
         restrict: "A",
 
         scope: {},
 
-        link: function (scope, element) {
-            var $slider = $(element),
-                slideWidth = $(window).width(),
+        link: function (scope, $slider) {
+            var slideWidth = $rootScope.viewportWidth,
                 timeoutId,
                 $slides = $slider.children(),
                 currentSlide = -1;

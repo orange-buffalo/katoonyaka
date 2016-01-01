@@ -3,6 +3,7 @@
      data-katoonyaka-handiworks-list>
 <#list handiworks as handiwork>
     <a href="/portfolio/${handiwork.url}"
+       ng-non-bindable
        data-katoonyaka-internal-link
        data-base-url="/photos/${handiwork.url}/${handiwork.cover.id}/"
        data-width="${handiwork.cover.width?c}"

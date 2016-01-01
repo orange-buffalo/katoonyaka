@@ -10,7 +10,7 @@
                         "Content-Type": "application/json"
                     }
                 }).then(function successCallback(response) {
-                    $rootScope.$broadcast("pageTransitionRequested", response.data);
+                    $rootScope.$broadcast("katoonyaka::pageTransitionRequested", response.data);
 
                 }, function errorCallback() {
                     console.log("error");  //todo
@@ -26,11 +26,12 @@
 
     angular.module("katoonyaka", [])
         .config(["$locationProvider", _configKatoonyaka])
+        .run(["$rootScope", KatoonyakaBootstrap])
         .controller("KatoonyakaController", ["$scope", "$rootScope", "$http", KatoonyakaController])
         .directive("katoonyakaHandiworksList", ["$compile", KatoonyakaHandiworksList])
         .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
-        .directive("katoonyakaHandiworkSummary", [KatoonyakaHandiworkSummary])
-        .directive("katoonyakaCoverSlides", ["$interval", KatoonyakaCoverSlides])
-        .directive("katoonyakaInternalLink", ["$location", KatoonyakaInternalLink])
+        .directive("katoonyakaHandiworkSummary", ["$rootScope", KatoonyakaHandiworkSummary])
+        .directive("katoonyakaCoverSlides", ["$rootScope", "$interval", KatoonyakaCoverSlides])
+        .directive("katoonyakaInternalLink", ["$rootScope", "$location", KatoonyakaInternalLink])
         .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition]);
 })();

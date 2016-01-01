@@ -2,19 +2,21 @@ var KatoonyakaHandiworksList = function ($compile) {
     return {
         restrict: "A",
 
-        link: function (scope, element) {
-            var $list = $(element);
+        link: function (scope, $list) {
 
             function _compileChildren() {
                 $list.children().each(function (index, value) {
                     $compile(value)(scope);
                 });
-                $(window).trigger("scroll");
             }
+
+            var lastHeight = scope.viewportHeight;
+            var lastWidth = scope.viewportWidth;
 
             var photos = [];
             $list.children().each(function (index, value) {
                 var $child = $(value);
+                $child.removeAttr("ng-non-bindable");
 
                 photos.push({
                     baseUrl: $child.data("baseUrl"),
@@ -24,7 +26,6 @@ var KatoonyakaHandiworksList = function ($compile) {
                 });
 
             });
-
 
             $list.empty().justifiedImages({
                 images: photos,
@@ -54,12 +55,23 @@ var KatoonyakaHandiworksList = function ($compile) {
 
             });
 
-            $(window).resize(function () {
-                $list.empty().justifiedImages('displayImages');
-                _compileChildren();
+            var unregisterLayoutListener = scope.$on("katoonyaka::layoutChange", function () {
+                if (lastHeight !== scope.viewportHeight || lastWidth !== scope.viewportWidth) {
+                    console.log("size changed");
+
+                    $list.empty().justifiedImages('displayImages');
+                    _compileChildren();
+                    lastHeight = scope.viewportHeight;
+                    lastWidth = scope.viewportWidth;
+                }
             });
 
             _compileChildren();
+
+            $list.on("$destroy", function () {
+                unregisterLayoutListener();
+                scope.$destroy();
+            });
         }
     }
 };

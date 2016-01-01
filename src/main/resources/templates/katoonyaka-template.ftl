@@ -31,7 +31,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
     <script src="/static/js/jquery.justified.images.js"></script>
     <script src="/static/js/sly.js"></script>
-    <script src="/static/js/utils.js"></script>
     <script src="/static/js/imagesloaded.js"></script>
     <script src="/static/js/clamp.js"></script>
     <script src="/static/js/jquery.transit.js"></script>
@@ -41,6 +40,7 @@
     <script src="/static/js/katoonyaka.cover.slides.js"></script>
     <script src="/static/js/katoonyaka.internal.link.js"></script>
     <script src="/static/js/katoonyaka.page.transition.js"></script>
+    <script src="/static/js/katoonyaka.bootstrap.js"></script>
     <script src="/static/js/katoonyaka.js"></script>
 
     </body>
