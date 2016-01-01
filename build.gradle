@@ -154,38 +154,41 @@ def cssOutputFolder = "${webStaticFolder}/css"
 
 task compileSass(type:CrossPlatformExec) {
     workingDir "${sassSourceFolder}"
-    commandLine 'compass', 'compile', 'sass/katoonyaka*.scss', '--force'
+    commandLine 'compass', 'compile', 'sass/katoonyaka.scss', '--force'
 
-    doLast {
-        def cssFiles = fileTree("${cssSourceFolder}").include('**/*.css')
-        cssFiles.eachWithIndex { cssFile, idx ->
-            def destFileName = cssFile.name[0 .. cssFile.name.lastIndexOf('.') - 1]
-            destFileName = "${destFileName}.${katoonyakaVersion}.css"
+//    doLast {
+//        def cssFiles = fileTree("${cssSourceFolder}").include('**/*.css')
+//        cssFiles.eachWithIndex { cssFile, idx ->
+//            def destFileName = cssFile.name[0 .. cssFile.name.lastIndexOf('.') - 1]
+//            destFileName = "${destFileName}.${katoonyakaVersion}.css"
 
-            def task = tasks.create(name: "minifyCssFile: ${destFileName}", type: com.eriwen.gradle.css.tasks.MinifyCssTask) {
-                source = cssFile
-                dest = "${cssOutputFolder}/${destFileName}"
-                closure {
-                    compilationLevel = 'SIMPLE_OPTIMIZATIONS'
-                }
-            }
-            println "create task '${task.name}' for ${cssFile.name} -> ${destFileName}"
-        }
-    }
+//            def task = tasks.create(name: "minifyCssFile: ${destFileName}", type: com.eriwen.gradle.css.tasks.MinifyCssTask) {
+//                source = cssFile
+//                dest = "${cssOutputFolder}/${destFileName}"
+//                closure {
+//                    compilationLevel = 'SIMPLE_OPTIMIZATIONS'
+//                }
+//            }
+//            println "create task '${task.name}' for ${cssFile.name} -> ${destFileName}"
+//        }
+//    }
 }
 
-task prepareCss {
+task prepareCss(type: Copy) {
     dependsOn 'compileSass'
-    doLast {
-        tasks.findAll { it.name.startsWith 'minifyCssFile' }.each {
-            it.execute()
-            println "executed ${it.name}"
-        }
-    }
+    from cssSourceFolder
+    into cssOutputFolder
+//    doLast {
+//        tasks.findAll { it.name.startsWith 'minifyCssFile' }.each {
+//            it.execute()
+//            println "executed ${it.name}"
+//        }
+//    }
 }
 
 task prepareStaticWebResources(type: Copy) {
-    dependsOn 'prepareJs', 'prepareCss'
+//    dependsOn 'prepareJs', 'prepareCss'
+    dependsOn 'prepareCss'
     from webStaticFolder
     into  "${buildDir}/resources/main/public/static"
 }

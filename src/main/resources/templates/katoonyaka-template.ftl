@@ -4,7 +4,10 @@
     <head>
         <title>${responseData.title}</title>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="/static/css/katoonyaka.${katoonyakaVersion}.css">
+
+    <#--<link rel="stylesheet" href="/static/css/katoonyaka.${katoonyakaVersion}.css"> todo -->
+        <link rel="stylesheet" href="/static/css/katoonyaka.css">
+
         <base href="/">
     </head>
     <body ng-app="katoonyaka" ng-controller="KatoonyakaController">
