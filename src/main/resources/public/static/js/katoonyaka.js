@@ -28,7 +28,7 @@
         .config(["$locationProvider", _configKatoonyaka])
         .run(["$rootScope", KatoonyakaBootstrap])
         .controller("KatoonyakaController", ["$scope", "$rootScope", "$http", KatoonyakaController])
-        .directive("katoonyakaHandiworksList", ["$compile", KatoonyakaHandiworksList])
+        .directive("katoonyakaHandiworksList", ["$rootScope", "$compile", KatoonyakaHandiworksList])
         .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
         .directive("katoonyakaHandiworkSummary", ["$rootScope", KatoonyakaHandiworkSummary])
         .directive("katoonyakaCoverSlides", ["$rootScope", "$interval", KatoonyakaCoverSlides])

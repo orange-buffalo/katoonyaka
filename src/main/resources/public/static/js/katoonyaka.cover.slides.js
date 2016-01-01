@@ -28,8 +28,8 @@ var KatoonyakaCoverSlides = function ($rootScope, $interval) {
 
             $slides.each(function (index, value) {
                 var $slide = $(value);
-                $slide.css("background",
-                    "url(http://www.ucarecdn.com/" + $slide.data("photo") + "/-/resize/" + slideWidth + "x/) no-repeat center center");
+                $slide.css("background-image",
+                    "url(http://www.ucarecdn.com/" + $slide.data("photo") + "/-/resize/" + slideWidth + "x/)");
 
             });
 

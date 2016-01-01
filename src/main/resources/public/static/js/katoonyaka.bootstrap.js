@@ -3,13 +3,20 @@ var KatoonyakaBootstrap = function ($rootScope) {
     function _getViewportMetrics() {
         $rootScope.viewportHeight = $rootScope.$window.height();
         $rootScope.viewportWidth = $rootScope.$window.width();
+        $rootScope.landscapeMode = $rootScope.viewportHeight < $rootScope.viewportWidth;
+        $rootScope.smallScreen = $rootScope.viewportWidth < 600;
     }
 
     $rootScope.$window = $(window);
     _getViewportMetrics();
 
-    $rootScope.$window.on("DOMContentLoaded load resize", function () {
+    $rootScope.$window.on("DOMContentLoaded load", function () {
+        $rootScope.$broadcast("katoonyaka::layoutChange");
+    });
+
+    $rootScope.$window.on("resize", function () {
         _getViewportMetrics();
+        $rootScope.$broadcast("katoonyaka::resize");
         $rootScope.$broadcast("katoonyaka::layoutChange");
     });
 

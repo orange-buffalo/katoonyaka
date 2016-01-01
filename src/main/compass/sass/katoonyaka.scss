@@ -27,6 +27,8 @@ body {
     left: 0;
     top: 0;
     @include transition(all 1500ms);
+    background-position: center;
+    background-size: cover;
 
     &.hidden {
       opacity: 0;
@@ -34,12 +36,24 @@ body {
   }
 }
 
+@mixin katoonyaka-shadow {
+   @include box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.65));
+}
+
 .main-content {
   position: relative;
   background: rgba($main-bg-color, 0.95);
+  @include katoonyaka-shadow;
 
   .wrapper {
-    padding: 2em 10em; //todo media query
+    @media #{$small-only} {
+      padding: 1em;
+    }
+
+    @media #{$medium-up} {
+      padding: 2em;
+    }
+
     min-height: 200vh;
     @include box-sizing(content-box);
     z-index: 10;
@@ -66,7 +80,7 @@ body {
   .handiwork-summary {
     display: inline-block;
     overflow: hidden;
-    @include box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.69));
+    @include katoonyaka-shadow;
     @include transition(all 600ms ease-in-out);
     opacity: 1;
 
