@@ -76,6 +76,7 @@ h1 {
   position: relative;
   background: rgba($main-bg-color, 0.95);
   @include katoonyaka-shadow;
+  min-height: 100vh;
 
   .wrapper {
     @media #{$small-only} {
