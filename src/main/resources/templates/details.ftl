@@ -24,6 +24,7 @@
     <div class="photo-content" itemscope itemtype="http://schema.org/ImageGallery">
         <div class="handiwork-photo-gallery"
              katoonyaka-justified-gallery
+             data-row-height-factor="0.6"
              data-item-container-class="handiwork-photo"
              data-item-thumb-class="handiwork-photo-thumb">
         <#list handiwork.photos as photo>

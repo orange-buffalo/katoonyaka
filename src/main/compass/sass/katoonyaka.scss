@@ -304,6 +304,7 @@ h1 {
       .handiwork-photo {
         @extend .gallery-item;
         @include transition(all 400ms);
+        cursor: pointer;
 
         .handiwork-photo-thumb {
           @extend .gallery-thumb;

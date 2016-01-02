@@ -3,8 +3,9 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
         restrict: "A",
 
         scope: {
-            itemContainerClass: "=",
-            itemThumbClass: "="
+            itemContainerClass: "@",
+            itemThumbClass: "@",
+            rowHeightFactor: "@"
         },
 
         link: function (scope, $list) {
@@ -30,10 +31,14 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
             });
 
             function _createTiles() {
+                var rowHeightFactor = scope.rowHeightFactor ? scope.rowHeightFactor : 1;
+                var rowHeight = rowHeightFactor *
+                    ($rootScope.landscapeMode ? $rootScope.viewportHeight * 0.5 : $rootScope.viewportHeight * 0.3);
+
                 $list.empty().justifiedImages({
                     images: photos,
-                    rowHeight: $rootScope.landscapeMode ? $rootScope.viewportHeight * 0.5 : $rootScope.viewportHeight * 0.3,
-                    maxRowHeight: $rootScope.viewportHeight * 2,
+                    rowHeight: rowHeight,
+                    maxRowHeight: $rootScope.viewportHeight * 3,
                     margin: $rootScope.smallScreen ? 3 : 5,
                     thumbnailPath: function (photo, width, height) {
                         return photo.baseUrl + width + "x" + height + ".jpeg";
