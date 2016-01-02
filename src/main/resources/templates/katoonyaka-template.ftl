@@ -24,6 +24,7 @@
 
     <div katoonyaka-scroll katoonyaka-page-transition>
         <div class="header-container">
+            <div class="header-title"></div>
             <div class="scroll-button"></div>
         </div>
         <section class="main-content">
