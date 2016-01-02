@@ -1,14 +1,12 @@
 var KatoonyakaPageTransition = function ($rootScope, $compile) {
     return {
         restrict: "A",
-        link: function (scope, element) {
-            var container = element.find(".main-content");
-
+        link: function (scope, $container) {
             $rootScope.$on("katoonyaka::pageTransitionRequested", function (event, newPageData) {
 
                 window.document.title = newPageData.title;
 
-                var $currentContent = container.children().eq(0);
+                var $currentContent = $container.children().eq(0);
 
                 var $newContent = $("<div class='wrapper pending'>")
                     .append($(newPageData.htmlContent));
@@ -17,7 +15,7 @@ var KatoonyakaPageTransition = function ($rootScope, $compile) {
 
                 $newContent.transition({translate: "-100%"}, 0);
 
-                container.append($newContent);
+                $container.append($newContent);
 
                 $rootScope.scrollTo($rootScope.viewportHeight);
 
