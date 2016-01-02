@@ -13,6 +13,7 @@
     <body ng-app="katoonyaka" ng-controller="KatoonyakaController">
 
         <#include "cover-slides.ftl"/>
+        <#include "nav-bar.ftl"/>
 
         <div katoonyaka-scroll>
             <div class="header-container">
@@ -47,6 +48,7 @@
         <script src="/static/js/katoonyaka.page.transition.js"></script>
         <script src="/static/js/katoonyaka.bootstrap.js"></script>
         <script src="/static/js/katoonyaka.photoswipe.js"></script>
+        <script src="/static/js/katoonyaka.navigation.bar.js"></script>
         <script src="/static/js/katoonyaka.js"></script>
 
     </body>

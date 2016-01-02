@@ -44,7 +44,7 @@ var KatoonyakaScroll = function ($rootScope) {
                     $scrollButton.hide(300);
                 }
 
-                $rootScope.$broadcast("katoonyaka::scroll", sly.pos);
+                $rootScope.$broadcast("katoonyaka::scroll", sly.pos.cur);
 
                 if (!scope.scrollBarVisible && sly.pos.cur > $rootScope.viewportHeight) {
                     $scrollBar.transition({opacity: 1}, 400);

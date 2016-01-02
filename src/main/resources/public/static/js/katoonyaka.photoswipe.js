@@ -80,9 +80,8 @@ var KatoonyakaPhotoswipe = function ($rootScope) {
 
             _setupPhotoswipe();
 
-            $rootScope.$on("katoonyaka::pageTransitionFinished", function () {
-                _setupPhotoswipe();
-            });
+            $rootScope.$on("katoonyaka::pageTransitionFinished", _setupPhotoswipe);
+            $rootScope.$on("katoonyaka::resize", _setupPhotoswipe);
 
         }
     }

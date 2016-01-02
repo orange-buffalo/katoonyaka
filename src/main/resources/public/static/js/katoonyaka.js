@@ -31,6 +31,7 @@
         .directive("katoonyakaJustifiedGallery", ["$rootScope", "$compile", KatoonyakaJustifiedGallery])
         .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
         .directive("katoonyakaHandiworkSummary", ["$rootScope", KatoonyakaHandiworkSummary])
+        .directive("katoonyakaNavigationBar", ["$rootScope", KatoonyakaNavigationBar])
         .directive("katoonyakaHandiworkPhoto", [KatoonyakaHandiworkPhoto])
         .directive("katoonyakaCoverSlides", ["$rootScope", "$interval", KatoonyakaCoverSlides])
         .directive("katoonyakaInternalLink", ["$rootScope", "$location", KatoonyakaInternalLink])

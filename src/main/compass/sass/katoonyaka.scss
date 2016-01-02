@@ -8,8 +8,9 @@
 @import "third-party/ps-default-skin";
 
 $main-bg-color: #4D4C42;
-$first-secondary-color: #e97174;
-$second-secondary-color: #94E1E9;
+$accent-color: #DEB9A3;
+$secondary-color: #E1D3C8;
+$nav-bar-height: 2em;
 
 html, body {
   font-size: 16px !important;
@@ -34,12 +35,13 @@ a {
 body {
   background-color: $main-bg-color;
   overflow: hidden;
-  color: white;
+  color: #E1D3C8;
 }
 
 h1 {
   margin: 0 0 0.67em 0;
   text-align: center;
+  color: $accent-color;
 }
 
 .cover-slides {
@@ -67,7 +69,7 @@ h1 {
 }
 
 @mixin katoonyaka-shadow {
-  @include box-shadow(1px 1px 5px 0px rgba(0, 0, 0, 0.65));
+  @include box-shadow(1px 1px 5px 0px rgb(47, 44, 42));
 }
 
 .main-content {
@@ -77,11 +79,11 @@ h1 {
 
   .wrapper {
     @media #{$small-only} {
-      padding: 1em;
+      padding: ($nav-bar-height + 0.2em) 1em 1em 1em;
     }
 
     @media #{$medium-up} {
-      padding: 2em;
+      padding: ($nav-bar-height + 0.2em);
     }
 
     @include box-sizing(content-box);
@@ -136,7 +138,6 @@ h1 {
       height: 100%;
 
       $hover-text-color: #DCD6D2;
-      $hover-accent-text-color: #DEB9A3;
       $hover-bg-color: #999B9B;
       $hover-animation-time: 700ms;
 
@@ -192,7 +193,7 @@ h1 {
             margin: 1em 0 0 0;
             text-align: center;
             @include no-hover;
-            color: $hover-accent-text-color;
+            color: $accent-color;
           }
 
           hr {
@@ -233,7 +234,7 @@ h1 {
 
 .scrollbar {
   position: absolute;
-  top: 10px;
+  top: ($nav-bar-height + 0.2em);
   right: 10px;
   bottom: 10px;
   width: 2px;
@@ -264,7 +265,6 @@ h1 {
 
 .handiwork-details {
   @include grid-row();
-  text-align: justify;
 
   .text-content {
 
@@ -278,14 +278,16 @@ h1 {
 
     .handiwork-description-area {
       .handiwork-description-part {
-        h2 {
-
+        p {
+          text-align: justify;
         }
       }
     }
 
     .handiwork-links {
-
+      text-align: right;
+      color: $accent-color;
+      text-decoration: underline;
     }
   }
 
@@ -375,3 +377,51 @@ h1 {
   }
 }
 
+.nav-bar {
+  background: transparent;
+  display: block;
+  height: 2em;
+  line-height: 2em;
+  font-size: 90%;
+  position: fixed;
+  z-index: 100;
+  top: 2em;
+  left: 0;
+  width: 100%;
+  padding: 0 2em;
+  @include transition(all 300ms);
+  color: $secondary-color;
+
+  &.panelled {
+    top: 0;
+    background: darken($main-bg-color, 10%);
+    border-bottom: 1px solid darken($main-bg-color, 15%);
+    @include katoonyaka-shadow;
+  }
+
+  a {
+    display: inline-block;
+    @include transition(all 300ms);
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  .additional-links {
+    display: inline-block;
+    float: left;
+    height: 100%;
+  }
+
+  .general-links {
+    display: inline-block;
+    float: right;
+    height: 100%;
+
+    a {
+      margin-left: 1em;
+    }
+  }
+
+}

@@ -1,8 +1,10 @@
-<nav class="main-nav">
-    <ul id="nav-bar-menu">
-        <li><a class="nav-link" data-scroll-destination="home" href="/#home">Home</a></li><!--
-        --><li><a class="nav-link" data-scroll-destination="portfolio" href="/#portfolio">Portfolio</a></li><!--
-        --><li><a class="nav-link" data-scroll-destination="about" href="/#about">About Us</a></li><!--
-        --><li><a class="nav-link" data-scroll-destination="shops" href="/#shops">Shops</a></li>
-    </ul>
+<nav class="nav-bar" katoonyaka-navigation-bar>
+    <span class="additional-links">
+
+    </span>
+    <span class="general-links">
+        <a href="/" katoonyaka-internal-link>Home</a>
+        <a href="/about" katoonyaka-internal-link>About us</a>
+        <a href="/shops" katoonyaka-internal-link>Shops</a>
+    </span>
 </nav>
