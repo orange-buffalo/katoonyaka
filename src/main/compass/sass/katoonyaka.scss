@@ -84,7 +84,6 @@ h1 {
       padding: 2em;
     }
 
-    min-height: 200vh;
     @include box-sizing(content-box);
     z-index: 10;
 
@@ -259,10 +258,6 @@ h1 {
 .frame {
   margin: 0 0 0 0;
   height: 100%;
-
-  .slidee {
-    padding-top: 100vh;
-  }
 }
 
 // Details page
@@ -318,6 +313,40 @@ h1 {
           opacity: 0;
         }
       }
+    }
+  }
+}
+
+.header-container {
+  height: 100vh;
+  position: relative;
+
+  .scroll-button {
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0.5em;
+    width: 100%;
+    opacity: 0.7;
+
+    &:before {
+      content: "scroll down to see more";
+      font-size: 70%;
+      display: block;
+    }
+
+    &:after {
+      content: "";
+      border-bottom: 2px solid white;
+      border-left: 2px solid white;
+      @include rotate(-45deg);
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-bottom: 0.3em;
+      margin-top: -0.3em;
     }
   }
 }

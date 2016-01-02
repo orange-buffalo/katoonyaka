@@ -6,6 +6,7 @@ var KatoonyakaScroll = function ($rootScope) {
 
         link: function (scope, $frame) {
             scope.scrollBarVisible = false;
+            scope.firstMove = true;
 
             $frame.addClass("frame");
             $frame.children().wrapAll("<div class='slidee'/>");
@@ -16,20 +17,33 @@ var KatoonyakaScroll = function ($rootScope) {
 
             var sly = new Sly($frame,
                 {
-                    speed: 300,
-                    //easing: 'easeOutExpo', //todo ?
+                    touchDragging: true,
+                    speed: 400,
                     scrollBar: $scrollBar,
-                    scrollBy: 100,
-                    dragHandle: 1,
-                    dynamicHandle: 1,
-                    clickBar: 1
+                    scrollBy: $rootScope.smallScreen? 80 : 100,
+                    dragHandle: true,
+                    dynamicHandle: true,
+                    clickBar: true,
+                    easing: "linear",
+                    releaseSwing: true
                 })
                 .init();
 
             $rootScope.$on("katoonyaka::layoutChange", sly.reload);
             $rootScope.$on("katoonyaka::pageTransitionFinished", sly.reload);
 
+            var $scrollButton = $(".scroll-button");
+            $scrollButton.on("click", function() {
+                $rootScope.scrollTo($rootScope.viewportHeight);
+            });
+
             sly.on("move", function () {
+                if (scope.firstMove) {
+                    $rootScope.scrollTo($rootScope.viewportHeight);
+                    scope.firstMove = false;
+                    $scrollButton.hide(300);
+                }
+
                 $rootScope.$broadcast("katoonyaka::scroll", sly.pos);
 
                 if (!scope.scrollBarVisible && sly.pos.cur > $rootScope.viewportHeight) {
@@ -46,7 +60,7 @@ var KatoonyakaScroll = function ($rootScope) {
 
             $rootScope.scrollTo = function (pos) {
                 sly.slideTo(pos);
-            }
+            };
 
         }
     }
