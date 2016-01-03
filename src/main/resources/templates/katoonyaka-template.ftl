@@ -1,9 +1,14 @@
 <#include "global-settings.ftl"/>
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <title>${responseData.title}</title>
+
+        <meta charset="utf-8" />
+
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1">
+
+        <link rel="icon" type="image/png" href="/static/img/favicon.png">
 
     <#--<link rel="stylesheet" href="/static/css/katoonyaka.${katoonyakaVersion}.css"> todo -->
         <link rel="stylesheet" href="/static/css/katoonyaka.css">
