@@ -1,0 +1,30 @@
+.shops-section {
+  @include grid-row();
+  max-width: 160em;
+
+  .shop-container {
+    margin-bottom: 1em;
+
+    @media #{$small-up} {
+      @include grid-column(12);
+    }
+
+    @media #{$large-up} {
+      @include grid-column(6);
+    }
+
+    .shop-logo {
+      max-width: 30%;
+      float: left;
+      margin: 0 0.8em 0.8em 0;
+    }
+
+    .shop-description {
+      text-align: justify;
+
+      a {
+        color: $accent-color;
+      }
+    }
+  }
+}

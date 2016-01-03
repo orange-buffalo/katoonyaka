@@ -23,7 +23,7 @@ public class ShopsClientController extends AbstractClientController {
 
     @Override
     protected String getContentTemplateName() {
-        return "about";
+        return "shops";
     }
 
 }
