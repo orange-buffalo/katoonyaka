@@ -10,4 +10,5 @@ fileSnapshots.bin
 outputFileStates.bin
 taskArtifacts.bin
 .sass-cache
-src/main/compass/stylesheets
+dist
+node_modules
