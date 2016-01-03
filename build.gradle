@@ -119,3 +119,7 @@ task buildCss {
 jar {
     dependsOn "buildCss", "buildJs"
 }
+
+clean.doFirst {
+    delete "${rootDir}/src/main/web/dist/"
+}
