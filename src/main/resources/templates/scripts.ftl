@@ -38,7 +38,9 @@
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
   }
 
-  loadScript("http://code.jquery.com/jquery-1.11.2.min.js", function () {
-    loadScript(mainJs);
+  loadScript("http://code.jquery.com/jquery-1.11.3.min.js", function () {
+      loadScript("https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js", function () {
+          loadScript("/static/js/katoonyaka.${katoonyakaVersion}.min.js");
+      });
   });
 </script>

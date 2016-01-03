@@ -5,7 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class PhotoSource {
-    private int width;
-    private int minWidth;
+public class ClientResponseData {
+
+    private String title;
+
+    private String htmlContent;
+
 }

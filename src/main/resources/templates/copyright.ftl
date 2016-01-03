@@ -1,3 +1,4 @@
+<#--todo do we still need this? -->
 <section class="copyright-section">
     <div class="row">
         <div>

@@ -9,16 +9,6 @@ import java.util.List;
 
 public class EnrichedHandiwork {
 
-    private static final List<PhotoSource> PHOTO_SOURCES = PhotoSourcesBuilder.start(1800)
-            .add(1300)
-            .add(1000)
-            .add(700)
-            .add(300)
-            .add(200)
-            .add(140)
-            .add(0)
-            .build();
-
     @Delegate
     private Handiwork handiwork;
 
@@ -46,10 +36,6 @@ public class EnrichedHandiwork {
         }
         sections.add(new HandiworkDescriptionSection(currentHeader, currentContent));
         return sections;
-    }
-
-    public List<PhotoSource> getPhotoSources() {
-        return PHOTO_SOURCES;
     }
 
 }

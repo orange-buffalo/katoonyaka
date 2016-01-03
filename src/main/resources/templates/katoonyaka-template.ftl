@@ -15,7 +15,6 @@
         <base href="/">
     </head>
     <body ng-app="katoonyaka" ng-controller="KatoonyakaController">
-
         <#include "cover-slides.ftl"/>
         <#include "nav-bar.ftl"/>
 
@@ -33,9 +32,6 @@
         </div>
 
         <#include "pswp.ftl"/>
-
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
-        <script src="/static/js/katoonyaka.${katoonyakaVersion}.min.js"></script>
+        <#include "scripts.ftl"/>
     </body>
 </html>
