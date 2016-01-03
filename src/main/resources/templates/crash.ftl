@@ -4,7 +4,7 @@
     <head>
         <title>Katoonyaka. We crashed</title>
         <#include "head-common.ftl"/>
-        <link rel="stylesheet" href="/static/css/katoonyaka-crash.${katoonyakaVersion}.css">
+        <link rel="stylesheet" href="/static/css/katoonyaka.${katoonyakaVersion}.css">
     </head>
     <body>
         <div class="crash-page">

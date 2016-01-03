@@ -1,0 +1,52 @@
+html, body {
+  font-size: 16px !important;
+
+  @media #{$medium-only} {
+    font-size: 16px !important;
+  }
+
+  @media #{$large-only} {
+    font-size: 17px !important;
+  }
+
+  @media #{$xlarge-only} {
+    font-size: 18px !important;
+  }
+}
+
+a {
+  @include unstyled-link;
+}
+
+body {
+  background-color: $main-bg-color;
+  overflow: hidden;
+  color: #E1D3C8;
+}
+
+h1 {
+  margin: 0 0 0.67em 0;
+  text-align: center;
+  color: $accent-color;
+}
+
+.justify-gallery {
+  .picrow {
+    white-space: nowrap;
+  }
+
+  .gallery-item {
+    display: inline-block;
+    overflow: hidden;
+
+    .gallery-thumb {
+      position: relative;
+    }
+  }
+
+}
+
+@mixin katoonyaka-shadow {
+  @include box-shadow(1px 1px 5px 0px rgb(47, 44, 42));
+}
+

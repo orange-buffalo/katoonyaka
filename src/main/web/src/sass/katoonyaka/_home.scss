@@ -1,0 +1,110 @@
+.handiworks-list {
+  @extend .justify-gallery;
+
+  .handiwork-summary {
+    @extend .gallery-item;
+    @include katoonyaka-shadow;
+    @include transition(all 600ms ease-in-out);
+    opacity: 1;
+
+    &.pending {
+      opacity: 0;
+    }
+
+    .handiwork-summary-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      $hover-text-color: #DCD6D2;
+      $hover-bg-color: #999B9B;
+      $hover-animation-time: 700ms;
+
+      @mixin no-hover() {
+        @include scale(0);
+        opacity: 0;
+        @include transition(all $hover-animation-time * 0.85);
+      }
+
+      @mixin on-hover() {
+        @include scale(1);
+        opacity: 1;
+      }
+
+      .handiwork-description {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 2em;
+        background: rgba($hover-bg-color, 0);
+        display: flex;
+        align-items: center;
+        white-space: normal;
+        @include transition(all $hover-animation-time);
+
+        &:hover {
+          background: rgba($hover-bg-color, 0.7);
+
+          .handiwork-description-wrapper {
+            h3 {
+              @include on-hover;
+            }
+
+            hr {
+              @include on-hover;
+            }
+
+            p {
+              @include on-hover;
+            }
+          }
+
+        }
+
+        .handiwork-description-wrapper {
+          overflow: hidden;
+
+          h3 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 1em 0 0 0;
+            text-align: center;
+            @include no-hover;
+            color: $accent-color;
+          }
+
+          hr {
+            border: 0;
+            height: 1px;
+            @include background-image(
+                            linear-gradient(left,
+                                    rgba($hover-text-color, 0),
+                                    rgba($hover-text-color, 1),
+                                    rgba($hover-text-color, 0)));
+            margin: 0.5em 3em;
+            @include no-hover;
+          }
+
+          p {
+            width: 100%;
+            line-height: 1.5em;
+            font-size: .8em;
+            display: inline-block;
+            padding: 0 1em;
+            text-align: center;
+            margin: 0;
+            @include no-hover;
+            color: $hover-text-color;
+          }
+        }
+
+      }
+
+      .handiwork-thumb {
+        @extend .gallery-thumb;
+      }
+    }
+  }
+}
