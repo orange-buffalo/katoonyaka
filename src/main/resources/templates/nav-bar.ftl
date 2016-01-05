@@ -4,7 +4,7 @@
     </span>
     <span class="general-links">
         <a href="/" katoonyaka-internal-link>Home</a>
-        <a href="/about" katoonyaka-internal-link>About us</a>
-        <a href="/shops" katoonyaka-internal-link>Shops</a>
+        <#--<a href="/about" katoonyaka-internal-link>About us</a>-->
+        <a href="https://www.etsy.com/shop/katoonyaka" target="_blank">Shop</a>
     </span>
 </nav>
