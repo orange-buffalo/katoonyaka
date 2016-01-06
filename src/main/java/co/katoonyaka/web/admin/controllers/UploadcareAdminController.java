@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin/api/uploadcare")
 @ResponseBody
 @Scope("session")
-public class UploadcareController {
+public class UploadcareAdminController {
 
     @Autowired
     private PhotoService photoService;

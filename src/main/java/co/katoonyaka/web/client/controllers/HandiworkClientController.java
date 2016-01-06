@@ -2,24 +2,23 @@ package co.katoonyaka.web.client.controllers;
 
 import co.katoonyaka.domain.Handiwork;
 import co.katoonyaka.services.HandiworkRepository;
-import co.katoonyaka.web.client.domain.EnrichedHandiwork;
+import co.katoonyaka.web.client.domain.HandiworkResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/portfolio/{link}")
-public class HandiworkClientController extends AbstractClientController {
+public class HandiworkClientController extends AbstractClientController<HandiworkResponseModel> {
 
     @Autowired
     protected HandiworkRepository handiworkRepository;
 
     @Override
-    protected void populateModel(Model model, Map pathVariables) {
+    protected HandiworkResponseModel getModel(Map pathVariables) {
         // todo redirects
 //         if (link.contains("_")) {
 //            return "redirect:/portfolio/" + link.replaceAll("_", "-");
@@ -33,19 +32,34 @@ public class HandiworkClientController extends AbstractClientController {
         String link = (String) pathVariables.get("link");
         Handiwork handiwork = handiworkRepository.findByUrl(link);
 
-        if (handiwork != null) {
-            model.addAttribute("handiwork", new EnrichedHandiwork(handiwork));
+        if (handiwork == null) {
+            throw new IllegalStateException("Cannot find handiwork by " + link);
         }
+
+        HandiworkResponseModel model = new HandiworkResponseModel(handiwork);
+
+        List<Handiwork> allHandiworks = handiworkRepository.findAllPublished();
+        int index = allHandiworks.indexOf(handiwork);
+
+        if (index > 0) {
+            model.setPreviousHandiwork(allHandiworks.get(index - 1));
+        }
+
+        if (index < allHandiworks.size() - 1) {
+            model.setNextHandiwork(allHandiworks.get(index + 1));
+        }
+
+        return model;
     }
 
     @Override
-    protected String getTitle(Model model, HttpServletRequest request) {
-        return ((EnrichedHandiwork) model.asMap().get("handiwork")).getName();
+    protected String getContentTemplate() {
+        return "/handiwork/handiwork-content";
     }
 
     @Override
-    protected String getContentTemplateName() {
-        return "details";
+    protected String getAdditionalLinksTemplate() {
+        return "/handiwork/handiwork-links";
     }
 
 }

@@ -9,7 +9,7 @@ var KatoonyakaPageTransition = function ($rootScope, $compile) {
                 var $currentContent = $container.children().eq(0);
 
                 var $newContent = $("<div class='wrapper pending'>")
-                    .append($(newPageData.htmlContent));
+                    .append($(newPageData.mainContent));
 
                 $currentContent.transition({opacity: 0}, 700);
 

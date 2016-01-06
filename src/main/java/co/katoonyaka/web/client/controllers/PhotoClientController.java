@@ -16,7 +16,7 @@ import java.io.OutputStream;
 
 @Controller
 @RequestMapping("/photos/")
-public class PhotosController {
+public class PhotoClientController {
 
     @Autowired
     private HandiworkRepository handiworkRepository;

@@ -10,17 +10,17 @@ import java.util.List;
 public class EnrichedHandiwork {
 
     @Delegate
-    private Handiwork handiwork;
+    private Handiwork delegate;
 
-    public EnrichedHandiwork(Handiwork handiwork) {
-        this.handiwork = handiwork;
+    public EnrichedHandiwork(Handiwork delegate) {
+        this.delegate = delegate;
     }
 
     public List<HandiworkDescriptionSection> getSections() {
         List<HandiworkDescriptionSection> sections = new ArrayList<>();
         String currentHeader = null;
         String currentContent = null;
-        for (String line : handiwork.getDescription().split("\\r?\\n")) {
+        for (String line : delegate.getDescription().split("\\r?\\n")) {
             if (line.contains("{") && line.contains("}")) {
                 if (currentContent != null) {
                     sections.add(new HandiworkDescriptionSection(currentHeader, currentContent));

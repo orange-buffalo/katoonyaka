@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/api/covers")
 @ResponseBody
-public class CoverController {
+public class CoverAdminController {
 
     @Autowired
     private CoverRepository repository;

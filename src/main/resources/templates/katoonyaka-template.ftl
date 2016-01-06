@@ -15,8 +15,8 @@
         <base href="/">
     </head>
     <body ng-app="katoonyaka" ng-controller="KatoonyakaController">
-        <#include "cover-slides.ftl"/>
-        <#include "nav-bar.ftl"/>
+        <#include "includes/cover-slides.ftl"/>
+        <#include "includes/nav-bar.ftl"/>
 
         <div katoonyaka-scroll>
             <div class="header-container">
@@ -26,12 +26,12 @@
 
             <section class="main-content" katoonyaka-page-transition>
                 <div class="wrapper">
-                    ${responseData.htmlContent}
+                    ${responseData.mainContent}
                 </div>
             </section>
         </div>
 
-        <#include "pswp.ftl"/>
-        <#include "scripts.ftl"/>
+        <#include "includes/pswp.ftl"/>
+        <#include "includes/scripts.ftl"/>
     </body>
 </html>

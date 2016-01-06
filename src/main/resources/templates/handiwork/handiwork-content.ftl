@@ -1,9 +1,9 @@
 <section itemscope itemtype="http://schema.org/Product" class="handiwork-details">
     <div class="text-content">
-        <h1 itemprop="name">${handiwork.name}</h1>
+        <h1 itemprop="name">${model.handiwork.name}</h1>
 
         <div itemprop="description" class="handiwork-description-area">
-        <#list handiwork.sections as section>
+        <#list model.handiwork.sections as section>
             <div class="handiwork-description-part<#if section_has_next><#else> end</#if>">
                 <h2>${section.header!"..."}</h2>
             ${section.content!"..."}
@@ -12,11 +12,11 @@
         </div>
 
         <div class="handiwork-links">
-        <#if handiwork.etsyUrl?has_content>
-            <a class="icon-etsy" href="${handiwork.etsyUrl}" target="_blank">Buy on Etsy</a><br/>
+        <#if model.handiwork.etsyUrl?has_content>
+            <a class="icon-etsy" href="${model.handiwork.etsyUrl}" target="_blank">Buy on Etsy</a><br/>
         </#if>
-        <#if handiwork.dawandaUrl?has_content>
-            <a class="icon-dawanda" href="${handiwork.dawandaUrl}" target="_blank">Buy on DaWanda</a>
+        <#if model.handiwork.dawandaUrl?has_content>
+            <a class="icon-dawanda" href="${model.handiwork.dawandaUrl}" target="_blank">Buy on DaWanda</a>
         </#if>
         </div>
     </div>
@@ -27,10 +27,10 @@
              data-row-height-factor="0.6"
              data-item-container-class="handiwork-photo"
              data-item-thumb-class="handiwork-photo-thumb">
-        <#list handiwork.photos as photo>
+        <#list model.handiwork.photos as photo>
             <div
                ng-non-bindable
-               data-base-url="/photos/${handiwork.url}/${photo.id}/"
+               data-base-url="/photos/${model.handiwork.url}/${photo.id}/"
                data-width="${photo.width?c}"
                data-height="${photo.height?c}"
                katoonyaka-handiwork-photo

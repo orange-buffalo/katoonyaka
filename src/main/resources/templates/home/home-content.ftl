@@ -4,7 +4,7 @@
      katoonyaka-justified-gallery
      data-item-container-class="handiwork-summary"
      data-item-thumb-class="handiwork-thumb">
-<#list handiworks as handiwork>
+<#list model.handiworks as handiwork>
     <a href="/portfolio/${handiwork.url}"
        ng-non-bindable
        katoonyaka-internal-link

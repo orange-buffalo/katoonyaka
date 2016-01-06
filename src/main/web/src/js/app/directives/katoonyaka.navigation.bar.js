@@ -1,4 +1,4 @@
-var KatoonyakaNavigationBar = function ($rootScope) {
+var KatoonyakaNavigationBar = function ($rootScope, $compile) {
     return {
         restrict: "A",
 
@@ -7,6 +7,7 @@ var KatoonyakaNavigationBar = function ($rootScope) {
         link: function (scope, $element) {
 
             scope.panelled = false;
+            var $additionalLinks = $element.find(".additional-links").first();
 
             function _saveDimensions() {
                 scope.offsetTop = $rootScope.viewportHeight - $element.position().top - $element.outerHeight();
@@ -26,6 +27,14 @@ var KatoonyakaNavigationBar = function ($rootScope) {
                     scope.panelled = true;
                 }
 
+            });
+
+            $rootScope.$on("katoonyaka::pageTransitionRequested", function (event, newPageData) {
+                $additionalLinks.transition({opacity: 0}, 200, function () {
+                    $additionalLinks.html(newPageData.additionalLinksContent);
+                    $compile($additionalLinks)(scope);
+                    $additionalLinks.css({opacity: ""});
+                });
             });
 
         }

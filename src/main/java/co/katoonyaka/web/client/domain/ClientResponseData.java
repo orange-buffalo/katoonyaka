@@ -9,6 +9,8 @@ public class ClientResponseData {
 
     private String title;
 
-    private String htmlContent;
+    private String mainContent;
+
+    private String additionalLinksContent;
 
 }

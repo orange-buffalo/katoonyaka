@@ -1,3 +1,7 @@
+@mixin nav-bar-transition {
+  @include transition(all 200ms);
+}
+
 .nav-bar {
   background: transparent;
   display: block;
@@ -10,22 +14,27 @@
   left: 0;
   width: 100%;
   padding: 0 2em;
-  @include transition(all 300ms);
-  color: $secondary-color;
+  @include nav-bar-transition;
+  color: #C59F71;
 
   &.panelled {
     top: 0;
     background: darken($main-bg-color, 10%);
     border-bottom: 1px solid darken($main-bg-color, 15%);
     @include katoonyaka-shadow;
+
+    .additional-links {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   a {
     display: inline-block;
-    @include transition(all 300ms);
+    @include nav-bar-transition;
 
     &:hover {
-      color: $accent-color;
+      color: #EAC291;
     }
   }
 
@@ -33,6 +42,13 @@
     display: inline-block;
     float: left;
     height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    @include nav-bar-transition;
+
+    a {
+      margin-right: 1em;
+    }
   }
 
   .general-links {

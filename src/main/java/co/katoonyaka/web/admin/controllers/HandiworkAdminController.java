@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/api/handiworks")
 @ResponseBody
-public class HandiworkController {
+public class HandiworkAdminController {
 
     @Autowired
     private HandiworkRepository handiworkRepository;
