@@ -1,5 +1,5 @@
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"
-     katoonyaka-photoswipe
+     data-katoonyaka-photoswipe
      data-gallery-selector=".handiwork-photo-gallery"
      data-gallery-thumb-selector=".handiwork-photo">
 

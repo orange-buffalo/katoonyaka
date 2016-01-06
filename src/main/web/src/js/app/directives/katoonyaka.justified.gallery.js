@@ -19,7 +19,7 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
             var photos = [];
             $list.children().each(function (index, value) {
                 var $child = $(value);
-                $child.removeAttr("ng-non-bindable");
+                $child.removeAttr("data-ng-non-bindable");
 
                 photos.push({
                     baseUrl: $child.data("baseUrl"),

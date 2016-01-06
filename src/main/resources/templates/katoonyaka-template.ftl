@@ -14,17 +14,17 @@
 
         <base href="/">
     </head>
-    <body ng-app="katoonyaka" ng-controller="KatoonyakaController">
+    <body data-ng-app="katoonyaka" data-ng-controller="KatoonyakaController">
         <#include "includes/cover-slides.ftl"/>
         <#include "includes/nav-bar.ftl"/>
 
-        <div katoonyaka-scroll>
+        <div data-katoonyaka-scroll>
             <div class="header-container">
                 <div class="header-title"></div>
                 <div class="scroll-button"></div>
             </div>
 
-            <section class="main-content" katoonyaka-page-transition>
+            <section class="main-content" data-katoonyaka-page-transition>
                 <div class="wrapper">
                     ${responseData.mainContent}
                 </div>
