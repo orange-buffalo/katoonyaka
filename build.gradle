@@ -89,16 +89,12 @@ task configureGrunt {
     dependsOn "installGrunt", "npmInstall";
 }
 
-task buildJs {
-    dependsOn "grunt_buildJs"
+task buildJs(type:GruntTask) {
+    args = ["buildJs", "--katoonyakaVersion=${katoonyakaVersion}"]
     doLast {
         copy {
             from "${rootDir}/src/main/web/dist/js"
             into "${buildDir}/resources/main/public/static/js"
-            include '**/katoonyaka.min.*'
-            rename { String fileName ->
-                fileName.replace(".min.", ".${katoonyakaVersion}.min.")
-            }
         }
     }
 }
