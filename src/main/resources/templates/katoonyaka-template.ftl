@@ -24,11 +24,11 @@
                 <div class="scroll-button"></div>
             </div>
 
-            <section class="main-content" data-katoonyaka-page-transition>
+            <main class="main-content" data-katoonyaka-page-transition>
                 <div class="wrapper">
                     ${responseData.mainContent}
                 </div>
-            </section>
+            </main>
         </div>
 
         <#include "includes/pswp.ftl"/>

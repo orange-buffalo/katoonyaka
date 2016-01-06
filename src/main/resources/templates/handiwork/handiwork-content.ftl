@@ -1,13 +1,15 @@
-<section itemscope itemtype="http://schema.org/Product" class="handiwork-details">
+<article itemscope
+         itemtype="http://schema.org/Product"
+         class="handiwork-details">
     <div class="text-content">
         <h1 itemprop="name">${model.handiwork.name}</h1>
 
         <div itemprop="description" class="handiwork-description-area">
         <#list model.handiwork.sections as section>
-            <div class="handiwork-description-part<#if section_has_next><#else> end</#if>">
+            <section class="handiwork-description-part">
                 <h2>${section.header!"..."}</h2>
-            ${section.content!"..."}
-            </div>
+                ${section.content!"..."}
+            </section>
         </#list>
         </div>
 
@@ -39,29 +41,5 @@
             </div>
         </#list>
         </div>
-
-        <#--todo: check if we need noscript-->
-        <#--<ul class="gamma-gallery">-->
-        <#--<#list handiwork.photos as photo>-->
-            <#--<li itemprop="associatedMedia" itemscope itemtype="MediaObject">-->
-                <#--<div data-max-width="1800" data-max-height="2400">-->
-                    <#--<#list handiwork.photoSources as photoSource>-->
-                        <#--<div data-src="/photos/${handiwork.url}/${photo.id}/${photoSource.width?c}"-->
-                             <#--data-min-width="${photoSource.minWidth?c}"-->
-                             <#--data-width="${photoSource.width?c}"-->
-                             <#--data-height="${(photo.height * photoSource.width / photo.width)?round?c}"></div>-->
-                    <#--</#list>-->
-                    <#--<noscript>-->
-                        <#--<img src="/photos/${handiwork.url}.${photo.id}.jpeg"-->
-                             <#--alt="${handiwork.name}"-->
-                             <#--itemprop="http://schema.org/image"/>-->
-                    <#--</noscript>-->
-                <#--</div>-->
-            <#--</li>-->
-        <#--</#list>-->
-        <#--</ul>-->
-
-
     </div>
-
-</section>
+</article>
