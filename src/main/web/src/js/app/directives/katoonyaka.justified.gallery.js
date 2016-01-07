@@ -41,7 +41,7 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
                     maxRowHeight: $rootScope.viewportHeight * 3,
                     margin: $rootScope.smallScreen ? 3 : 5,
                     thumbnailPath: function (photo, width, height) {
-                        return photo.baseUrl + width + "x" + height + ".jpeg";
+                        return photo.baseUrl + "." + width + "x" + height + ".jpeg";
                     },
                     getSize: function (photo) {
                         return {width: photo.width, height: photo.height};

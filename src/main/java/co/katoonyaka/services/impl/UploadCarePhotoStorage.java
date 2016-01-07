@@ -31,7 +31,6 @@ import java.util.List;
 public class UploadCarePhotoStorage implements PhotoStorage {
 
     private static final int MAX_UPLOADCARE_SIZE = 2048;
-    private static final int DEFAULT_SIZE = 700;
 
     @Autowired
     private ConfigService configService;
@@ -47,11 +46,6 @@ public class UploadCarePhotoStorage implements PhotoStorage {
 
     @Override
     public void loadPhoto(Photo photo, OutputStream stream, Integer width, Integer height) {
-        if (width == null && height == null) {
-            loadPhoto(photo, "preview/" + DEFAULT_SIZE + "x" + DEFAULT_SIZE, stream);
-            return;
-        }
-
         if (width == null) {
             throw new ApplicationException("Width is not specified");
         }

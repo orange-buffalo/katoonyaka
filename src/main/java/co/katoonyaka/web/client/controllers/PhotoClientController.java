@@ -29,10 +29,22 @@ public class PhotoClientController {
     public void loadPhoto(@PathVariable String handiworkUrl,
                           @PathVariable String photoId,
                           HttpServletResponse response) throws IOException {
-        loadPhoto(handiworkUrl, photoId, null, null, response);
+        Handiwork handiwork = handiworkRepository.findByUrl(handiworkUrl);
+        Photo photo = handiwork.getPhoto(photoId);
+        loadPhoto(handiworkUrl, photoId, Math.min(1000, photo.getWidth()), null, response);
     }
 
     @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}/{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}/{width:[0-9]+}",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    @Deprecated
+    public void loadPhotoLegacy(@PathVariable String handiworkUrl,
+                                @PathVariable String photoId,
+                                @PathVariable Integer width,
+                                HttpServletResponse response) throws IOException {
+        loadPhoto(handiworkUrl, photoId, width, response);
+    }
+
+    @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}.{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}.w{width:[0-9]+}.jpeg",
             produces = MediaType.IMAGE_JPEG_VALUE)
     public void loadPhoto(@PathVariable String handiworkUrl,
                           @PathVariable String photoId,
@@ -42,6 +54,17 @@ public class PhotoClientController {
     }
 
     @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}/{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}/{width:[0-9]+}x{height:[0-9]+}",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    @Deprecated
+    public void loadPhotoLegacy(@PathVariable String handiworkUrl,
+                                @PathVariable String photoId,
+                                @PathVariable Integer width,
+                                @PathVariable Integer height,
+                                HttpServletResponse response) throws IOException {
+        loadPhoto(handiworkUrl, photoId, width, height, response);
+    }
+
+    @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}.{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}.{width:[0-9]+}x{height:[0-9]+}.jpeg",
             produces = MediaType.IMAGE_JPEG_VALUE)
     public void loadPhoto(@PathVariable String handiworkUrl,
                           @PathVariable String photoId,

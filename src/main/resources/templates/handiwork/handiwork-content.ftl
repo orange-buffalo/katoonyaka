@@ -33,11 +33,13 @@
             <div
                data-ng-non-bindable
                data-katoonyaka-handiwork-photo
-               data-base-url="/photos/${model.handiwork.url}/${photo.id}/"
+               data-base-url="/photos/${model.handiwork.url}.${photo.id}"
                data-width="${photo.width?c}"
                data-height="${photo.height?c}"
                class="handiwork-photo">
-                <img class="handiwork-photo-thumb"/>
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                     alt="${model.handiwork.name}"
+                     class="handiwork-photo-thumb"/>
             </div>
         </#list>
         </div>

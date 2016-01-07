@@ -39,7 +39,7 @@ var KatoonyakaPhotoswipe = function ($rootScope) {
                     }
 
                     psItems.push({
-                        src: $thumb.data("baseUrl") + photoWidth,
+                        src: $thumb.data("baseUrl") + ".w" + photoWidth + ".jpeg",
                         w: photoWidth,
                         h: photoHeight
                     });
