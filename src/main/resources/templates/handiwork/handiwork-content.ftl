@@ -15,7 +15,7 @@
 
         <div class="handiwork-links">
         <#if model.handiwork.etsyUrl?has_content>
-            <a class="icon-etsy" href="${model.handiwork.etsyUrl}" target="_blank">Buy on Etsy</a><br/>
+            <a class="icon-etsy" href="${model.handiwork.etsyUrl}" target="_blank">Buy on Etsy</a>
         </#if>
         <#if model.handiwork.dawandaUrl?has_content>
             <a class="icon-dawanda" href="${model.handiwork.dawandaUrl}" target="_blank">Buy on DaWanda</a>
