@@ -1,5 +1,17 @@
 # Change Log
 
+## [v3.0.0](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.0) (2016-01-16)
+[Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v2.4.0...v3.0.0)
+
+**Implemented enhancements:**
+
+- covers preload [\#25](https://github.com/orange-buffalo/katoonyaka/issues/25)
+- improve details gallery [\#8](https://github.com/orange-buffalo/katoonyaka/issues/8)
+
+**Closed issues:**
+
+- optimize build [\#13](https://github.com/orange-buffalo/katoonyaka/issues/13)
+
 ## [v2.4.0](https://github.com/orange-buffalo/katoonyaka/tree/v2.4.0) (2015-12-25)
 **Fixed bugs:**
 
