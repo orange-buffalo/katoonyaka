@@ -22,7 +22,7 @@
                     <div class="handiwork-description-wrapper">
                         <h3>${handiwork.name}</h3>
                         <hr/>
-                        <p>${handiwork.summary!"..."}</p>
+                        <p>${handiwork.summary!""}</p>
                     </div>
                 </div>
             </article>

@@ -11,7 +11,8 @@ public class HomeResponseModel extends ClientResponseModel {
     private List<Handiwork> handiworks;
 
     public HomeResponseModel(String title, List<Handiwork> handiworks) {
-        super(title);
+        //todo meta description
+        super(title, null);
         this.handiworks = handiworks;
     }
 

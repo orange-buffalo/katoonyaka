@@ -12,7 +12,8 @@ public class AboutClientController extends AbstractClientController<ClientRespon
 
     @Override
     protected ClientResponseModel getModel(Map pathVariables) {
-        return new ClientResponseModel("About Us");
+        //todo meta description
+        return new ClientResponseModel("About Us", null);
     }
 
     @Override

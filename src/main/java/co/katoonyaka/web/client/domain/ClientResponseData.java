@@ -13,4 +13,6 @@ public class ClientResponseData {
 
     private String additionalLinksContent;
 
+    private String metaDescription;
+
 }

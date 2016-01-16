@@ -15,7 +15,7 @@ public class HandiworkResponseModel extends ClientResponseModel {
     private EnrichedHandiwork nextHandiwork;
 
     public HandiworkResponseModel(Handiwork handiwork) {
-        super(handiwork.getName());
+        super(handiwork.getName(), handiwork.getSummary());
         this.handiwork = new EnrichedHandiwork(handiwork);
     }
 

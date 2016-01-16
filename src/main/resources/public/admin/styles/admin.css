@@ -85,3 +85,9 @@ md-card .draft-label {
 .handiwork-description-content {
     padding: 15px;
 }
+
+.handiwork-summary {
+    color: #7D7B79;
+    font-size: 90%;
+    margin: 0;
+}

@@ -1,12 +1,17 @@
 <#include "global-settings.ftl"/>
 <!doctype html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
     <head>
         <title>${responseData.title}</title>
 
         <meta charset="utf-8" />
 
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1">
+
+        <meta name="description" content="${responseData.metaDescription!""}">
+
+        <meta property="og:title" content="${responseData.title}"/>
+        <meta property="og:description" content="${responseData.metaDescription!""}"/>
 
         <link rel="icon" type="image/png" href="/static/img/favicon.png">
 

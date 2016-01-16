@@ -7,8 +7,12 @@ public class ClientResponseModel {
     @Getter
     private String title;
 
-    public ClientResponseModel(String title) {
+    @Getter
+    private String metaDescription;
+
+    public ClientResponseModel(String title, String metaDescription) {
         this.title = title;
+        this.metaDescription = metaDescription;
     }
 
 }

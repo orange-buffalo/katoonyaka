@@ -31,6 +31,9 @@ public class Handiwork extends PortfolioEntity {
     @Getter @Setter
     private String description;
 
+    @Getter @Setter
+    private String summary;
+
     @Setter @Getter
     private String url;
 
@@ -42,11 +45,6 @@ public class Handiwork extends PortfolioEntity {
                 .filter(photo -> photoId.equals(photo.getId()))
                 .findFirst()
                 .orElse(null);
-    }
-
-    public String getSummary() {
-        // todo from data
-        return description.replaceAll("\\{ Application & Inspiration \\}\\s+", "");
     }
 
 }
