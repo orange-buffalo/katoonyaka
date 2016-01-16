@@ -55,9 +55,15 @@ public abstract class AbstractClientController<T extends ClientResponseModel> {
         String mainContent = renderFreemarkerTemplate(templateModel, getContentTemplate(), request);
         String title = "Katoonyaka. " + clientResponseModel.getTitle();
         String additionalLinksContent = renderFreemarkerTemplate(templateModel, getAdditionalLinksTemplate(), request);
-        String metaDescription = clientResponseModel.getMetaDescription();
 
-        return new ClientResponseData(title, mainContent, additionalLinksContent, metaDescription);
+        return new ClientResponseData(
+                title,
+                mainContent,
+                additionalLinksContent,
+                clientResponseModel.getMetaDescription(),
+                clientResponseModel.getRelativeImageUrl(),
+                clientResponseModel.getRelativeUrl()
+        );
     }
 
     private String renderFreemarkerTemplate(Model model,

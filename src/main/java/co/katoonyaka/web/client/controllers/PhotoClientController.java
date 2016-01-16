@@ -1,7 +1,9 @@
 package co.katoonyaka.web.client.controllers;
 
+import co.katoonyaka.domain.Cover;
 import co.katoonyaka.domain.Handiwork;
 import co.katoonyaka.domain.Photo;
+import co.katoonyaka.services.CoverRepository;
 import co.katoonyaka.services.HandiworkRepository;
 import co.katoonyaka.services.PhotoStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,16 @@ import java.io.OutputStream;
 @RequestMapping("/photos/")
 public class PhotoClientController {
 
+    private static final int DEFAULT_PHOTO_SIZE = 1000;
+
     @Autowired
     private HandiworkRepository handiworkRepository;
 
     @Autowired
     private PhotoStorage photoStorage;
+
+    @Autowired
+    CoverRepository coverRepository;
 
     @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}.{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}.jpeg",
             produces = MediaType.IMAGE_JPEG_VALUE)
@@ -31,7 +38,7 @@ public class PhotoClientController {
                           HttpServletResponse response) throws IOException {
         Handiwork handiwork = handiworkRepository.findByUrl(handiworkUrl);
         Photo photo = handiwork.getPhoto(photoId);
-        loadPhoto(handiworkUrl, photoId, Math.min(1000, photo.getWidth()), null, response);
+        loadPhoto(photo, Math.min(DEFAULT_PHOTO_SIZE, photo.getWidth()), null, response);
     }
 
     @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}/{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}/{width:[0-9]+}",
@@ -73,6 +80,22 @@ public class PhotoClientController {
                           HttpServletResponse response) throws IOException {
         Handiwork handiwork = handiworkRepository.findByUrl(handiworkUrl);
         Photo photo = handiwork.getPhoto(photoId);
+        loadPhoto(photo, width, height, response);
+    }
+
+    @RequestMapping(value = "/cover/{coverId}.jpeg",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public void loadPhoto(@PathVariable String coverId,
+                          HttpServletResponse response) throws IOException {
+        Cover cover = coverRepository.findById(coverId);
+        Photo photo = cover.getPhoto();
+        loadPhoto(photo, Math.min(DEFAULT_PHOTO_SIZE, photo.getWidth()), null, response);
+    }
+
+    private void loadPhoto(Photo photo,
+                           Integer width,
+                           Integer height,
+                           HttpServletResponse response) throws IOException {
         response.setHeader("cache-control", "public, max-age=3600");
         OutputStream stream = response.getOutputStream();
         photoStorage.loadPhoto(photo, stream, width, height);

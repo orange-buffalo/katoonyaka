@@ -15,7 +15,10 @@ public class HandiworkResponseModel extends ClientResponseModel {
     private EnrichedHandiwork nextHandiwork;
 
     public HandiworkResponseModel(Handiwork handiwork) {
-        super(handiwork.getName(), handiwork.getSummary());
+        super(handiwork.getName(),
+                handiwork.getSummary(),
+                "photos/" + handiwork.getUrl() + "." + handiwork.getCover().getId() + ".jpeg",
+                "portfolio/" + handiwork.getUrl());
         this.handiwork = new EnrichedHandiwork(handiwork);
     }
 

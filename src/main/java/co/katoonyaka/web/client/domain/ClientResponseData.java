@@ -15,4 +15,8 @@ public class ClientResponseData {
 
     private String metaDescription;
 
+    private String relativeImageUrl;
+
+    private String relativeUrl;
+
 }
