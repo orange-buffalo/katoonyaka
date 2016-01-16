@@ -1,4 +1,4 @@
-var KatoonyakaHandiworkSummary = function ($rootScope) {
+var KatoonyakaHandiworkSummary = function ($rootScope, gaService) {
     return {
         restrict: "A",
         scope: {},
@@ -9,10 +9,13 @@ var KatoonyakaHandiworkSummary = function ($rootScope) {
                 $clamp(textToClamp, {clamp: 3, useNativeClamp: false});
 
                 var $thumb = $element.find("img");
-                $thumb.attr("src", $thumb.data("thumbSrc"));
+                var photoUrl = $thumb.data("thumbSrc");
+                $thumb.attr("src", photoUrl);
                 $element.imagesLoaded(function () {
                     $element.removeClass("pending");
                 });
+
+                gaService.trackPhotoLazyLoad(photoUrl);
             }
 
             function _checkVisibility() {

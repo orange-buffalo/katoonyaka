@@ -22,7 +22,7 @@
 
         <base href="/">
     </head>
-    <body data-ng-app="katoonyaka" data-ng-controller="KatoonyakaController">
+    <body data-ng-app="katoonyaka" data-ng-controller="KatoonyakaController" data-katoonyaka-external-links>
         <#include "includes/cover-slides.ftl"/>
         <#include "includes/nav-bar.ftl"/>
 

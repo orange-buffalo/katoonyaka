@@ -19,6 +19,7 @@ module.exports = function (grunt) {
                 src: [
                     "src/js/third-party/*.js",
                     "src/js/app/controllers/*.js",
+                    "src/js/app/services/*.js",
                     "src/js/app/directives/*.js",
                     "src/js/app/katoonyaka.js"
                 ],

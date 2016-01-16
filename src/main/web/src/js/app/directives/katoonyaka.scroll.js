@@ -1,4 +1,4 @@
-var KatoonyakaScroll = function ($rootScope) {
+var KatoonyakaScroll = function ($rootScope, gaService) {
     return {
         restrict: "A",
 
@@ -35,6 +35,7 @@ var KatoonyakaScroll = function ($rootScope) {
             var $scrollButton = $(".scroll-button");
             $scrollButton.on("click", function() {
                 $rootScope.scrollTo($rootScope.viewportHeight);
+                gaService.trackScrollButtonClick();
             });
 
             sly.on("move", function () {
@@ -42,6 +43,7 @@ var KatoonyakaScroll = function ($rootScope) {
                     $rootScope.scrollTo($rootScope.viewportHeight);
                     scope.firstMove = false;
                     $scrollButton.hide(300);
+                    gaService.trackFirstScroll();
                 }
 
                 $rootScope.$broadcast("katoonyaka::scroll", sly.pos.cur);

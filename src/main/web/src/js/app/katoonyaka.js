@@ -1,25 +1,4 @@
 (function () {
-    var KatoonyakaController = function ($scope, $rootScope, $http) {
-
-        $rootScope.$on("$locationChangeStart", function (angularEvent, newUrl, oldUrl) {
-            if (oldUrl && oldUrl !== newUrl) {
-                $http({
-                    method: "GET",
-                    url: newUrl,
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }).then(function successCallback(response) {
-                    $rootScope.$broadcast("katoonyaka::pageTransitionRequested", response.data);
-
-                }, function errorCallback() {
-                    console.log("error");  //todo
-                });
-            }
-        });
-
-    };
-
     function _configKatoonyaka($locationProvider) {
         $locationProvider.html5Mode(true);
     }
@@ -27,14 +6,16 @@
     angular.module("katoonyaka", [])
         .config(["$locationProvider", _configKatoonyaka])
         .run(["$rootScope", KatoonyakaBootstrap])
-        .controller("KatoonyakaController", ["$scope", "$rootScope", "$http", KatoonyakaController])
+        .controller("KatoonyakaController", ["$scope", "$rootScope", "$http", "gaService", KatoonyakaController])
+        .factory("gaService", [GaService])
         .directive("katoonyakaJustifiedGallery", ["$rootScope", "$compile", KatoonyakaJustifiedGallery])
-        .directive("katoonyakaScroll", ["$rootScope", KatoonyakaScroll])
-        .directive("katoonyakaHandiworkSummary", ["$rootScope", KatoonyakaHandiworkSummary])
-        .directive("katoonyakaNavigationBar", ["$rootScope", "$compile", KatoonyakaNavigationBar])
+        .directive("katoonyakaScroll", ["$rootScope", "gaService", KatoonyakaScroll])
+        .directive("katoonyakaHandiworkSummary", ["$rootScope", "gaService", KatoonyakaHandiworkSummary])
+        .directive("katoonyakaNavigationBar", ["$rootScope", "$compile", "gaService", KatoonyakaNavigationBar])
         .directive("katoonyakaHandiworkPhoto", [KatoonyakaHandiworkPhoto])
         .directive("katoonyakaCoverSlides", ["$rootScope", "$interval", KatoonyakaCoverSlides])
         .directive("katoonyakaInternalLink", ["$rootScope", "$location", KatoonyakaInternalLink])
         .directive("katoonyakaPageTransition", ["$rootScope", "$compile", KatoonyakaPageTransition])
-        .directive("katoonyakaPhotoswipe", ["$rootScope", KatoonyakaPhotoswipe]);
+        .directive("katoonyakaExternalLinks", ["$rootScope", "gaService", KatoonyakaExternalLinks])
+        .directive("katoonyakaPhotoswipe", ["$rootScope", "gaService", KatoonyakaPhotoswipe]);
 })();

@@ -1,4 +1,4 @@
-var KatoonyakaPhotoswipe = function ($rootScope) {
+var KatoonyakaPhotoswipe = function ($rootScope, gaService) {
     return {
         restrict: "A",
 
@@ -53,13 +53,12 @@ var KatoonyakaPhotoswipe = function ($rootScope) {
 
                     var index = $galleryThumbs.index($thumb);
 
-
                     var options = {
                         index: index,
                         history: false,
                         getThumbBoundsFn: _getThumbBoundsFn,
                         bgOpacity: 0.85,
-                        mainClass: 'pswp--minimal--dark',
+                        mainClass: "pswp--minimal--dark",
                         barsSize: {top: barSize, bottom: barSize},
                         captionEl: false,
                         shareEl: false,
@@ -75,6 +74,11 @@ var KatoonyakaPhotoswipe = function ($rootScope) {
                     var gallery = new PhotoSwipe($element[0], PhotoSwipeUI_Default, psItems, options);
                     gallery.init();
 
+                    gallery.listen("afterChange", function() {
+                       gaService.trackPhotoFullView(psItems[gallery.getCurrentIndex()].src);
+                    });
+
+                    gaService.trackPhotoFullView(psItems[index].src);
                 });
             }
 
