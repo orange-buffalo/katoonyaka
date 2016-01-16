@@ -11,10 +11,11 @@ public class HomeResponseModel extends ClientResponseModel {
     private List<Handiwork> handiworks;
 
     public HomeResponseModel(String title,
-                             List<Handiwork> handiworks,
-                             String coverId) {
-        //todo meta description
-        super(title, null, "photos/cover/" + coverId + ".jpeg", "");
+                             String metaDescription,
+                             String relativeImageUrl,
+                             String relativeUrl,
+                             List<Handiwork> handiworks) {
+        super(title, metaDescription, relativeImageUrl, relativeUrl);
         this.handiworks = handiworks;
     }
 

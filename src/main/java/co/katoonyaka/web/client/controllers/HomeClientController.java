@@ -29,8 +29,10 @@ public class HomeClientController extends AbstractClientController<HomeResponseM
 
         return new HomeResponseModel(
                 "Portfolio",
-                handiworkRepository.findAllPublished(),
-                cover.getId()
+                "Wearable self designed and entirely hand knitted wrist warmers, practical and stylish fingerless gloves.",
+                "photos/cover/" + cover.getId() + ".jpeg",
+                "",
+                handiworkRepository.findAllPublished()
         );
     }
 
