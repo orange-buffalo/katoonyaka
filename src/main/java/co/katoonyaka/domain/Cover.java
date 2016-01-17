@@ -11,9 +11,6 @@ public class Cover extends PortfolioEntity {
 
     private Boolean draft;
     private Photo photo;
-    private String text;
-    private CoverHorizontalAlignment horizontalAlignment;
-    private CoverVerticalAlignment verticalAlignment;
 
     public Cover() {
         this.draft = true;

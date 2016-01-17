@@ -103,8 +103,6 @@ var EditCoverController = function($scope, ServicesFacade) {
     }
     else {
         $scope.selectedCover = {
-            horizontalAlignment: "CENTER",
-            verticalAlignment: "CENTER",
             draft: true
         };
     }

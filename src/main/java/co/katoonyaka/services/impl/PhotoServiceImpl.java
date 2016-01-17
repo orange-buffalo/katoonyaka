@@ -50,7 +50,7 @@ public class PhotoServiceImpl implements PhotoService {
                 .forEach(cover -> {
                     unusedExernalIds.remove(cover.getPhoto().getExternalId());
 
-                    photoUsageItems.add(new PhotoUsageItem("Cover", cover.getText(), 1));
+                    photoUsageItems.add(new PhotoUsageItem("Cover", cover.getId(), 1));
                 });
 
         return PhotoUsageStatistics.builder()

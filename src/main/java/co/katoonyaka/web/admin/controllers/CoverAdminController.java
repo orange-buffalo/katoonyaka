@@ -4,18 +4,12 @@ import co.katoonyaka.domain.Cover;
 import co.katoonyaka.services.CoverRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/admin/api/covers")
-@ResponseBody
 public class CoverAdminController {
 
     @Autowired
@@ -58,9 +52,8 @@ public class CoverAdminController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public String deleteCover(@PathVariable String id) {
+    public void deleteCover(@PathVariable String id) {
         repository.delete(repository.findById(id));
-        return id;
     }
 
 }

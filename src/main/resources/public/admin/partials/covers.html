@@ -1,8 +1,8 @@
 <div layout="row" layout-align="end center">
-  <md-button class="md-raised md-primary"
-             ng-click="startCoverCreation()">
-    Add Cover
-  </md-button>
+    <md-button class="md-raised md-primary"
+               ng-click="startCoverCreation()">
+        Add Cover
+    </md-button>
 </div>
 
 <md-divider></md-divider>
@@ -15,32 +15,29 @@
      dnd-horizontal-list="true"
      dnd-drop="moveCover(index, item)">
 
-  <div flex="33"
-       dnd-draggable="cover"
-       ng-repeat="cover in covers">
+    <div flex="33"
+         dnd-draggable="cover"
+         ng-repeat="cover in covers">
 
-    <md-card>
-      <img
-          ng-src="http://www.ucarecdn.com/{{cover.photo.externalId ? cover.photo.externalId : '86946809-2435-4fb3-b7cb-7193958f1756' }}/-/scale_crop/600x300/center/">
-      <md-card-content>
-        <div class="md-toolbar-tools">
-            <span ng-if="cover.draft"
-                  class="draft-label">
-              Draft
-            </span>
+        <md-card>
+            <img ng-src="http://www.ucarecdn.com/{{cover.photo.externalId ? cover.photo.externalId : '86946809-2435-4fb3-b7cb-7193958f1756' }}/-/scale_crop/600x300/center/">
+            <md-card-content>
+                <div class="md-toolbar-tools">
+                    <span ng-if="cover.draft"
+                          class="draft-label">
+                      Draft
+                    </span>
 
-          <span class="title">{{ cover.text }}</span>
+                    <span flex></span>
 
-          <span flex></span>
+                    <md-button class="md-icon-button"
+                               aria-label="Actions"
+                               ng-click="showMenu(cover)">
+                        <md-icon md-svg-icon="menu-button"></md-icon>
+                    </md-button>
+                </div>
 
-          <md-button class="md-icon-button"
-                     aria-label="Actions"
-                     ng-click="showMenu(cover)">
-            <md-icon md-svg-icon="menu-button"></md-icon>
-          </md-button>
-        </div>
-
-      </md-card-content>
-    </md-card>
-  </div>
+            </md-card-content>
+        </md-card>
+    </div>
 </div>
