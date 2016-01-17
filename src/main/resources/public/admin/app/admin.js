@@ -96,7 +96,7 @@ var factories = {
 
 angular.module('katoonyakaAdminApp',
         ['ngMaterial', 'ngRoute', 'ngResource', 'blockUI', 'ngMessages', 'dndLists',
-            'ngSanitize', 'restangular', 'ui.grid']
+            'ngSanitize', 'restangular', 'data-table']
     )
     .filter('nl2br', function() {
         return function (text) {

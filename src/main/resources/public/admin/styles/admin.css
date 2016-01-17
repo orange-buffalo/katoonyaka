@@ -91,3 +91,16 @@ md-card .draft-label {
     font-size: 90%;
     margin: 0;
 }
+
+.uploadcare-table-container {
+    position: relative;
+    padding: 0 !important;
+}
+
+.uploadcare-table {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}

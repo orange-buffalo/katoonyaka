@@ -1,4 +1,4 @@
-var UploadcareController = function($scope, ServicesFacade) {
+var UploadcareController = function ($scope, ServicesFacade) {
 
     function _readData(data) {
         $scope.usageData = data.photosUsage;
@@ -15,13 +15,31 @@ var UploadcareController = function($scope, ServicesFacade) {
 
     ServicesFacade.uploadcareService.load().then(_readData);
 
-    $scope.refresh = function() {
+    $scope.refresh = function () {
         ServicesFacade.uploadcareService.refresh().then(_readData);
     };
 
-    $scope.fix = function() {
+    $scope.fix = function () {
         ServicesFacade.uploadcareService.fix().then(_readData);
     };
 
+    $scope.options = {
+        rowHeight: 40,
+        headerHeight: 40,
+        footerHeight: false,
+        scrollbarV: true,
+        selectable: false,
+        columnMode: 'flex',
+        columns: [{
+            name: "Type",
+            flexGrow: 1
+        }, {
+            name: "Name",
+            flexGrow: 2
+        }, {
+            name: "Count",
+            flexGrow: 1
+        }]
+    };
 
 };
