@@ -1,10 +1,5 @@
 var CoversController = function($scope, ServicesFacade) {
 
-    ServicesFacade.configService.getConfigValue("uploadcare.publicKey")
-        .then(function (publicKey) {
-            $scope.uploadcarePublicKey = publicKey;
-        });
-
     function _reloadCovers() {
         ServicesFacade.coverService.getList()
             .then(function(covers) {
@@ -86,6 +81,11 @@ var CoversController = function($scope, ServicesFacade) {
 };
 
 var EditCoverController = function($scope, ServicesFacade) {
+
+    ServicesFacade.configService.getConfigValue("uploadcare.publicKey")
+        .then(function (publicKey) {
+            $scope.uploadcarePublicKey = publicKey;
+        });
 
     function _saveCallback() {
         ServicesFacade.notificationService.success('Saved!');

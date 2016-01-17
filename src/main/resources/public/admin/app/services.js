@@ -140,8 +140,8 @@ var UploadcareWidget = function (blockUI, NotificationService) {
         scope: {
             onFileUploaded: '&',
             onAllUploadsCompleted: '&',
-            multipleFiles: '=multipleFiles',
-            publicKey: '=publicKey'
+            multipleFiles: '=',
+            publicKey: '='
         },
         link: function (scope, element) {
             function _openUploadCareDialog() {
