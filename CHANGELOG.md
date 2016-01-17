@@ -1,5 +1,18 @@
 # Change Log
 
+## [v3.0.1](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.1) (2016-01-17)
+[Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.0...v3.0.1)
+
+**Implemented enhancements:**
+
+- send ga events on various user actions [\#31](https://github.com/orange-buffalo/katoonyaka/issues/31)
+- check data markup  [\#27](https://github.com/orange-buffalo/katoonyaka/issues/27)
+
+**Fixed bugs:**
+
+- increase photos cache period [\#37](https://github.com/orange-buffalo/katoonyaka/issues/37)
+- html is not well-formed [\#32](https://github.com/orange-buffalo/katoonyaka/issues/32)
+
 ## [v3.0.0](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.0) (2016-01-16)
 [Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v2.4.0...v3.0.0)
 
