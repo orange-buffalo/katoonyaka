@@ -23,16 +23,22 @@ public class SeoController {
     public SiteMap siteMap() {
         String baseUrl = "http://katoonyaka.co/";
         SiteMap siteMap = new SiteMap();
-        siteMap.addUrl(new SiteMapUrl(baseUrl));
+        SiteMapUrl homeUrl = new SiteMapUrl(baseUrl);
         for (Handiwork handiwork : handiworkRepository.findAllPublished()) {
             SiteMapUrl url = new SiteMapUrl(baseUrl + "portfolio/" + handiwork.getUrl());
             for (Photo photo : handiwork.getPhotos()) {
-                SiteMapImage image = new SiteMapImage(baseUrl + "photos/" + handiwork.getUrl() + "." +
-                        photo.getId() + ".jpeg");
+                SiteMapImage image = new SiteMapImage(
+                        baseUrl + "photos/" + handiwork.getUrl() + "." + photo.getId() + ".jpeg",
+                        handiwork.getName());
                 url.addImage(image);
             }
             siteMap.addUrl(url);
+
+            homeUrl.addImage(new SiteMapImage(
+                    baseUrl + "photos/" + handiwork.getUrl() + "." + handiwork.getCover().getId() + ".jpeg",
+                    handiwork.getName()));
         }
+        siteMap.addUrl(homeUrl);
 
         return siteMap;
     }

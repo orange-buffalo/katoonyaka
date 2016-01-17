@@ -11,8 +11,12 @@ public class SiteMapImage {
     @XmlElement(name = "loc", namespace = "http://www.google.com/schemas/sitemap-image/1.1")
     private String location;
 
-    public SiteMapImage(String location) {
+    @XmlElement(name = "title", namespace = "http://www.google.com/schemas/sitemap-image/1.1")
+    private String title;
+
+    public SiteMapImage(String location, String title) {
         this.location = location;
+        this.title = title;
     }
 
 }
