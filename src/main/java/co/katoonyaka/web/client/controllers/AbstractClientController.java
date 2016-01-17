@@ -53,7 +53,7 @@ public abstract class AbstractClientController<T extends ClientResponseModel> {
         templateModel.addAttribute("model", clientResponseModel);
 
         String mainContent = renderFreemarkerTemplate(templateModel, getContentTemplate(), request);
-        String title = "Katoonyaka. " + clientResponseModel.getTitle();
+        String title = clientResponseModel.getTitle() + " | Katoonyaka";
         String additionalLinksContent = renderFreemarkerTemplate(templateModel, getAdditionalLinksTemplate(), request);
 
         return new ClientResponseData(
