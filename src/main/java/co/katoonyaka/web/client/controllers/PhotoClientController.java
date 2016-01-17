@@ -96,7 +96,7 @@ public class PhotoClientController {
                            Integer width,
                            Integer height,
                            HttpServletResponse response) throws IOException {
-        response.setHeader("cache-control", "public, max-age=3600");
+        response.setHeader("cache-control", "public, max-age=31536000");
         OutputStream stream = response.getOutputStream();
         photoStorage.loadPhoto(photo, stream, width, height);
         stream.flush();
