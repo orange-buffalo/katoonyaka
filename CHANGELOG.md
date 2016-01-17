@@ -1,5 +1,17 @@
 # Change Log
 
+## [v3.0.2](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.2) (2016-01-17)
+[Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.1...v3.0.2)
+
+**Implemented enhancements:**
+
+- use html5shiv [\#33](https://github.com/orange-buffalo/katoonyaka/issues/33)
+- admin: make uploadcare table full height [\#26](https://github.com/orange-buffalo/katoonyaka/issues/26)
+
+**Closed issues:**
+
+- cleanup cover model [\#35](https://github.com/orange-buffalo/katoonyaka/issues/35)
+
 ## [v3.0.1](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.1) (2016-01-17)
 [Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.0...v3.0.1)
 
