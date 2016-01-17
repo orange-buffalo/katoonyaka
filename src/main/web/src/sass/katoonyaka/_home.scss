@@ -48,7 +48,7 @@
           background: rgba($hover-bg-color, 0.7);
 
           .handiwork-description-wrapper {
-            h3 {
+            h2 {
               @include on-hover;
             }
 
@@ -67,7 +67,7 @@
           overflow: hidden;
           width: 100%;
 
-          h3 {
+          h2 {
             overflow: hidden;
             text-overflow: ellipsis;
             margin: 1em 0 0 0;

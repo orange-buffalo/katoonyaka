@@ -20,7 +20,7 @@
                      alt="${handiwork.name}"/>
                 <div class="handiwork-description">
                     <div class="handiwork-description-wrapper">
-                        <h3>${handiwork.name}</h3>
+                        <h2>${handiwork.name}</h2>
                         <hr/>
                         <p>${handiwork.summary!""}</p>
                     </div>
