@@ -2,6 +2,7 @@
   @include grid-row();
 
   .text-content {
+    margin-bottom: 2em;
 
     @media #{$small-up} {
       @include grid-column($columns: 12, $collapse: true);
