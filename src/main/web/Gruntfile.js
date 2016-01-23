@@ -4,6 +4,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-compass");
+    grunt.loadNpmTasks('grunt-webfont');
 
     var version = grunt.option("katoonyakaVersion");
 
@@ -49,11 +50,26 @@ module.exports = function (grunt) {
                     force: true
                 }
             }
+        },
+
+        webfont: {
+            icons: {
+                src: "src/fonts/vectors/*.svg",
+                dest: "dist/fonts",
+                options: {
+                    types: "woff,ttf",
+                    embed: "ttf,woff",
+                    htmlDemo: false,
+                    stylesheet: "scss",
+                    template: "src/fonts/templates/_icons-template.scss"
+                }
+            }
         }
     });
 
     grunt.registerTask("buildJs", ["concat", "uglify"]);
     grunt.registerTask("buildCss", ["compass"]);
+    grunt.registerTask("buildFont", ["webfont"]);
 
     grunt.registerTask("default", ["buildJs", "buildCss"]);
 

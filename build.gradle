@@ -112,6 +112,16 @@ task buildCss {
     }
 }
 
+task buildFont {
+    dependsOn "grunt_buildFont"
+    doLast {
+        copy {
+            from "${rootDir}/src/main/web/dist/fonts/_icons.scss"
+            into "${rootDir}/src/main/web/src/sass/katoonyaka/"
+        }
+    }
+}
+
 jar {
     dependsOn "buildCss", "buildJs"
 }
