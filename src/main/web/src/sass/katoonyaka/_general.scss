@@ -1,3 +1,21 @@
+@mixin katoonyaka-shadow {
+  @include box-shadow(1px 1px 5px 0px rgb(47, 44, 42));
+}
+
+@font-face {
+  font-family: "Arvo";
+  src: local("Arvo"), url("/static/fonts/arvo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fjord One";
+  src: local("Fjord One"), local("Fjord-One"), url("/static/fonts/fjord-one.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   font-size: 16px !important;
 
@@ -46,8 +64,32 @@ h1 {
 
 }
 
-@mixin katoonyaka-shadow {
-  @include box-shadow(1px 1px 5px 0px rgb(47, 44, 42));
-}
+.main-content {
+  position: relative;
+  background: rgba($main-bg-color, 0.95);
+  @include katoonyaka-shadow;
+  min-height: 100vh;
 
-@import "icons";
+  .wrapper {
+    @media #{$small-only} {
+      padding: ($nav-bar-height + 0.2em) 1em 1em 1em;
+    }
+
+    @media #{$medium-up} {
+      padding: ($nav-bar-height + 0.2em);
+    }
+
+    @include box-sizing(content-box);
+    z-index: 10;
+
+    &.pending {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include box-sizing(border-box);
+      z-index: 20;
+      width: 100%;
+    }
+  }
+
+}

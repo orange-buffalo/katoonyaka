@@ -1,5 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Arvo|Fjord+One);
-
 @import "third-party/normalize";
 @import "third-party/photoswipe";
 @import "third-party/ps-default-skin";
@@ -11,6 +9,7 @@
 @import "compass/css3";
 
 @import "katoonyaka/settings";
+@import "katoonyaka/icons";
 @import "katoonyaka/general";
 @import "katoonyaka/header";
 @import "katoonyaka/navigation";
@@ -18,33 +17,3 @@
 @import "katoonyaka/crash";
 @import "katoonyaka/handiwork";
 @import "katoonyaka/home";
-
-.main-content {
-  position: relative;
-  background: rgba($main-bg-color, 0.95);
-  @include katoonyaka-shadow;
-  min-height: 100vh;
-
-  .wrapper {
-    @media #{$small-only} {
-      padding: ($nav-bar-height + 0.2em) 1em 1em 1em;
-    }
-
-    @media #{$medium-up} {
-      padding: ($nav-bar-height + 0.2em);
-    }
-
-    @include box-sizing(content-box);
-    z-index: 10;
-
-    &.pending {
-      position: absolute;
-      top: 0;
-      left: 0;
-      @include box-sizing(border-box);
-      z-index: 20;
-      width: 100%;
-    }
-  }
-
-}
