@@ -4,11 +4,11 @@
   .text-content {
 
     @media #{$small-up} {
-      @include grid-column(12);
+      @include grid-column($columns: 12, $collapse: true);
     }
 
     @media #{$xlarge-up} {
-      @include grid-column(4);
+      @include grid-column($columns: 4, $collapse: true);
     }
 
     .handiwork-description-area {
@@ -30,6 +30,7 @@
         border-radius: 0.3em;
         @include transition(all 400ms);
         margin-left: 1em;
+        white-space: nowrap;
 
         &:hover {
           background-color: rgba($accent-color, 0.3);
@@ -41,11 +42,12 @@
 
 .photo-content {
   @media #{$small-up} {
-    @include grid-column(12);
+    @include grid-column($columns: 12, $collapse: true);
   }
 
   @media #{$xlarge-up} {
     @include grid-column(8);
+    padding-right: 0;
   }
 
   .handiwork-photo-gallery {
