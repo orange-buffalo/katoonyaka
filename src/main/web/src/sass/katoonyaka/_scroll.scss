@@ -1,10 +1,17 @@
 .scrollbar {
   position: absolute;
   top: ($nav-bar-height + 0.2em);
-  right: 10px;
-  bottom: 10px;
+  bottom: 0.2em;
   width: 2px;
   background: darken($main-bg-color, 10%);
+
+  right: 3px;
+  @media #{$medium-up} {
+    right: 5px;
+  }
+  @media #{$large-up} {
+    right: 10px;
+  }
 
   .handle {
     width: 100%;
@@ -15,9 +22,16 @@
     .mousearea {
       position: absolute;
       top: 0;
-      left: -10px;
       width: 22px;
       height: 100%;
+
+      left: -3px;
+      @media #{$medium-up} {
+        left: -5px;
+      }
+      @media #{$large-up} {
+        left: -10px;
+      }
     }
   }
 }

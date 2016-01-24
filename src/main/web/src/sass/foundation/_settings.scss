@@ -151,11 +151,11 @@ $body-font-family: "Fjord One", Helvetica, Arial, sans-serif !default;
 // d. Media Query Ranges
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-$small-range: (0px, 400px);
-$medium-range: (401px, 770px);
-$large-range: (771px, 1000px);
-$xlarge-range: (1001px, 99999px);
-$xxlarge-range: (100000px, 999999px);
+$small-range: (0px, 600px);
+$medium-range: (601px, 767px);
+$large-range: (769px, 1024px);
+$xlarge-range: (1025px, 1200px);
+$xxlarge-range: (1201px, 999999px);
 
 // $screen: "only screen";
 
