@@ -104,3 +104,8 @@ md-card .draft-label {
     top: 0;
     bottom: 0;
 }
+
+.handiwork-cover {
+    float: left;
+    margin: 0 2em 2em 0;
+}

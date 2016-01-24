@@ -54,17 +54,22 @@ var HandiworkController = function($scope, ServicesFacade) {
             return;
         }
 
+        if (!$scope.handiwork.description) {
+            ServicesFacade.notificationService.error("Can't publish without description");
+            return;
+        }
+
+        if (!$scope.handiwork.summary) {
+            ServicesFacade.notificationService.error("Can't publish without summary");
+            return;
+        }
+
         if (!_hasCover()) {
             ServicesFacade.notificationService.error("Can't publish without cover defined");
             return;
         }
         $scope.handiwork.draft = false;
         $scope.handiwork.put().then(ServicesFacade.createSuccessNotification('Published!'));
-    };
-
-    $scope.setAsCover = function(photo) {
-        $scope.handiwork.cover = photo;
-        $scope.handiwork.put().then(ServicesFacade.createSuccessNotification('New cover saved!'));
     };
 
     $scope.movePhoto = function(index, photo) {
@@ -81,9 +86,13 @@ var HandiworkController = function($scope, ServicesFacade) {
             ServicesFacade.handiworkService.get($scope.handiwork.id)
                 .then(function(handiwork) {
                     $scope.handiwork = handiwork;
-                    ServicesFacade.notificationService.success('New photos uploaded and saved!')
+                    ServicesFacade.notificationService.success('Uploaded and saved!')
                 });
         });
+    };
+
+    $scope.onCoverUploaded = function(fileInfo) {
+        $scope.handiwork.cover = createUploadcarePhoto(fileInfo);
     };
 
     function _hasCover() {
@@ -91,24 +100,12 @@ var HandiworkController = function($scope, ServicesFacade) {
             !_.isNull($scope.handiwork.cover);
     }
 
-    $scope.isHandiworkCover = function(photo) {
-        return !_.isUndefined(photo.id) &&
-            _hasCover() &&
-            (photo.id === $scope.handiwork.cover.id);
-    };
-
     $scope.deletePhoto = function(photo) {
         var handiwork = $scope.handiwork;
-        var isCover = $scope.isHandiworkCover(photo);
         var shouldBeDraftify = (handiwork.photos.length == 1);
-        var content = isCover
-            ? ('This is a cover for ' + handiwork.name + '.')
-            : 'This is a regular photo, will just remove it from the photo list.';
+        var content = 'This photo will be removed from the photo list.';
         if (shouldBeDraftify) {
             content += ' And also this is the last photo, handiwork will be moved to Draft.'
-        }
-        else if (isCover) {
-            content += ' Another photo will be randomly chosen for the cover.';
         }
 
         var confirmDialog = ServicesFacade.$mdDialog.confirm()
@@ -121,10 +118,6 @@ var HandiworkController = function($scope, ServicesFacade) {
             handiwork.photos.splice(photoIndex, 1);
             if (shouldBeDraftify) {
                 handiwork.draft = true;
-                handiwork.cover = undefined;
-            }
-            else if (isCover) {
-                handiwork.cover = handiwork.photos[0];
             }
 
             handiwork.put().then(ServicesFacade.createSuccessNotification('Changes are saved'));

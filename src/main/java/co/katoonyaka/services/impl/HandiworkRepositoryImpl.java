@@ -21,7 +21,7 @@ public class HandiworkRepositoryImpl extends RepositoryBaseImpl<Handiwork> imple
 
     @Override
     public void save(Handiwork handiwork) {
-        List<Photo> photos = handiwork.getPhotos();
+        List<Photo> photos = handiwork.getAllPhotos();
         photos.stream()
                 .filter(photo -> photo.getId() == null)
                 .forEach(photo -> photo.setId(idGenerator.generateId(photos)));

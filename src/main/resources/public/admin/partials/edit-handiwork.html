@@ -32,9 +32,8 @@
 
         <md-input-container>
             <label>Summary (meta description)</label>
-            <input md-maxlength="160" required name="summary" ng-model="handiwork.summary">
+            <input md-maxlength="160" name="summary" ng-model="handiwork.summary">
             <div ng-messages="handiworkForm.summary.$error">
-                <div ng-message="required">This is required.</div>
                 <div ng-message="md-maxlength">It should be no longer than 160 characters.</div>
             </div>
         </md-input-container>

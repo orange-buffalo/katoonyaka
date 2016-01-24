@@ -35,7 +35,7 @@ public class PhotoServiceImpl implements PhotoService {
         List<PhotoUsageItem> photoUsageItems = new ArrayList<>();
         for (Handiwork handiwork : handiworks) {
             int count = 0;
-            for (Photo photo : handiwork.getPhotos()) {
+            for (Photo photo : handiwork.getAllPhotos()) {
                 if (registeredExternalIds.contains(photo.getExternalId())) {
                     count++;
                     unusedExernalIds.remove(photo.getExternalId());
