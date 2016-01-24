@@ -62,10 +62,31 @@
     position: absolute;
     top: 50%;
     left: 0;
+    font-family: $header-font;
+    line-height: 1em;
+
+    @media #{$small-only} {
+      font-size: 2em;
+    }
+
+    @media #{$medium-only} {
+      font-size: 3.5em;
+    }
+
+    @media #{$large-only} {
+      font-size: 4.25em;
+    }
+
+    @media #{$xlarge-only} {
+      font-size: 5em;
+    }
+
+    @media #{$xxlarge-only} {
+      font-size: 7em;
+    }
 
     &:before {
-      content: "Katoonyaka";
-      font-size: 300%;
+      content: "katoonyaka";
       display: block;
       margin-bottom: 0.1em;
       text-transform: uppercase;
@@ -74,7 +95,7 @@
 
     &:after {
       content: "creations";
-      font-size: 140%;
+      font-size: 0.7em;
     }
   }
 }

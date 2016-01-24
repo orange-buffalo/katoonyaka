@@ -74,6 +74,10 @@
             text-align: center;
             @include no-hover;
             color: $accent-color;
+
+            @media #{$small-only} {
+              font-size: 1em;
+            }
           }
 
           hr {

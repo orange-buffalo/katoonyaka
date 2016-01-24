@@ -11,7 +11,7 @@
       @include grid-column($columns: 12, $collapse: true);
     }
 
-    @media #{$xlarge-up} {
+    @media #{$large-up} {
       @include grid-column($columns: 4, $collapse: true);
     }
 
@@ -54,7 +54,7 @@
     @include grid-column($columns: 12, $collapse: true);
   }
 
-  @media #{$xlarge-up} {
+  @media #{$large-up} {
     @include grid-column(8);
     padding-right: 0;
   }
