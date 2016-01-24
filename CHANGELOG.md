@@ -1,5 +1,23 @@
 # Change Log
 
+## [v3.0.3](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.3) (2016-01-24)
+[Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.2...v3.0.3)
+
+**Implemented enhancements:**
+
+- handiwork cover should be treated as a separate photo [\#46](https://github.com/orange-buffalo/katoonyaka/issues/46)
+
+**Fixed bugs:**
+
+- on large screens font should be bigger [\#52](https://github.com/orange-buffalo/katoonyaka/issues/52)
+- host font css in katoonyaka.css [\#51](https://github.com/orange-buffalo/katoonyaka/issues/51)
+- on large screens photos are too big [\#50](https://github.com/orange-buffalo/katoonyaka/issues/50)
+- menu bar should be bigger [\#49](https://github.com/orange-buffalo/katoonyaka/issues/49)
+- shop links may have line breaks on ipad [\#43](https://github.com/orange-buffalo/katoonyaka/issues/43)
+- handiwork details text is too close to photos on small screens [\#42](https://github.com/orange-buffalo/katoonyaka/issues/42)
+- on mobile screen content padding is too big [\#39](https://github.com/orange-buffalo/katoonyaka/issues/39)
+- remove click outline on ipad [\#7](https://github.com/orange-buffalo/katoonyaka/issues/7)
+
 ## [v3.0.2](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.2) (2016-01-17)
 [Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.1...v3.0.2)
 
