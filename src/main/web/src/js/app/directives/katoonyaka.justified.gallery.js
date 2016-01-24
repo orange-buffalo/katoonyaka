@@ -32,8 +32,8 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
 
             function _createTiles() {
                 var rowHeightFactor = scope.rowHeightFactor ? scope.rowHeightFactor : 1;
-                var rowHeight = rowHeightFactor *
-                    ($rootScope.landscapeMode ? $rootScope.viewportHeight * 0.5 : $rootScope.viewportHeight * 0.3);
+                var maxHeight = Math.min($rootScope.viewportHeight, 900);
+                var rowHeight = rowHeightFactor * ($rootScope.landscapeMode ? maxHeight * 0.5 : maxHeight * 0.3);
 
                 $list.empty().justifiedImages({
                     images: photos,
