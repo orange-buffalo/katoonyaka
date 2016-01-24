@@ -5,17 +5,20 @@
 .nav-bar {
   background: transparent;
   display: block;
-  height: 2em;
-  line-height: 2em;
-  font-size: 90%;
+  height: $nav-bar-height;
+  line-height: $nav-bar-height;
   position: fixed;
   z-index: 100;
   top: 2em;
   left: 0;
   width: 100%;
-  padding: 0 2em;
   @include nav-bar-transition;
   color: #C59F71;
+
+  padding: 0 1em;
+  @media #{$small-only} {
+    padding: 0 0.5em;
+  }
 
   &.panelled {
     top: 0;
@@ -48,6 +51,9 @@
 
     a {
       margin-right: 1em;
+      @media #{$small-only} {
+        margin-right: 0.7em;
+      }
     }
   }
 
@@ -58,6 +64,9 @@
 
     a {
       margin-left: 1em;
+      @media #{$small-only} {
+        margin-left: 0.7em;
+      }
     }
   }
 
