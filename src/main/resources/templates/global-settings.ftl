@@ -1,1 +1,1 @@
-<#global katoonyakaVersion="3.0.4"/>
+<#global katoonyakaVersion="3.0.5"/>
