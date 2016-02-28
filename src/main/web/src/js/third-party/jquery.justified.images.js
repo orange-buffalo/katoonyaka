@@ -147,7 +147,7 @@
                 var ht = Math.min(Math.floor(h * r), parseInt(this.options.maxRowHeight,10));
                 r = ht / this.options.rowHeight;
                 var domRow = $('<div/>', {
-                    'class': 'picrow'
+                    'class': 'justify-row pending'
                 });
                 domRow.height(ht + border);
                 d.append(domRow);
@@ -171,8 +171,6 @@
                 }
 
                 domRow.html(imagesHtml);
-
-
 
                 if ((Math.abs(tw - availableRowWidth) < 0.05 * availableRowWidth)) {
                     // if total width is slightly smaller than
@@ -233,6 +231,8 @@
                         html : newBlock.html
                     }).appendTo(domRow);
                 }
+
+                 domRow.removeClass("pending");
             }
         },
         renderPhoto: function(image, obj, isLast) {

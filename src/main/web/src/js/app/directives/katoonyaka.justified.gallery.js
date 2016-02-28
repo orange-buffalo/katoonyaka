@@ -19,7 +19,9 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
             var photos = [];
             $list.children().each(function (index, value) {
                 var $child = $(value);
+                $child.remove();
                 $child.removeAttr("data-ng-non-bindable");
+                $child.removeClass("loading");
 
                 photos.push({
                     baseUrl: $child.data("baseUrl"),
@@ -27,7 +29,6 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
                     height: $child.data("height"),
                     content: $child
                 });
-
             });
 
             function _createTiles() {

@@ -13,9 +13,10 @@ var KatoonyakaHandiworkSummary = function ($rootScope, gaService) {
                 $thumb.attr("src", photoUrl);
                 $element.imagesLoaded(function () {
                     $element.removeClass("pending");
-                });
+                    $thumb.removeClass("loading");
 
-                gaService.trackPhotoLazyLoad(photoUrl);
+                    gaService.trackPhotoLazyLoad(photoUrl);
+                });
             }
 
             function _checkVisibility() {

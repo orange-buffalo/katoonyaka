@@ -13,9 +13,9 @@
            data-base-url="/photos/${handiwork.url}.${handiwork.cover.id}"
            data-width="${handiwork.cover.width?c}"
            data-height="${handiwork.cover.height?c}"
-           class="handiwork-summary">
+           class="handiwork-summary loading">
             <article class="handiwork-summary-container">
-                <img class="handiwork-thumb"
+                <img class="handiwork-thumb loading"
                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                      alt="${handiwork.name}"/>
                 <div class="handiwork-description">

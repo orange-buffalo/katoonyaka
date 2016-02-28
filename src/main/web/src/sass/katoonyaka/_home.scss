@@ -5,10 +5,9 @@
     @extend .gallery-item;
     @include katoonyaka-shadow;
     @include transition(all 600ms ease-in-out);
-    opacity: 1;
 
     &.pending {
-      opacity: 0;
+      @include box-shadow(none);
     }
 
     .handiwork-summary-container {
@@ -109,6 +108,13 @@
 
       .handiwork-thumb {
         @extend .gallery-thumb;
+        @include transition(opacity 600ms ease-out);
+        opacity: 1;
+
+        &.loading {
+          opacity: 0;
+        }
+
       }
     }
   }
