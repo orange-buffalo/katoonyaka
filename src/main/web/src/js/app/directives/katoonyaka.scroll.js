@@ -3,7 +3,7 @@ var KatoonyakaScroll = function ($rootScope, gaService) {
         restrict: "A",
         scope: {},
         link: function (scope) {
-            scope.firstMove = true;
+            scope.firstMove = document.body.scrollTop == 0;
             scope.$body = $("body");
 
             var $scrollButton = $(".scroll-button");
