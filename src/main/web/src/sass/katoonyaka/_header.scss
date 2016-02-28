@@ -74,28 +74,27 @@
     }
 
     @media #{$large-only} {
-      font-size: 4.25em;
+      font-size: 4em;
     }
 
     @media #{$xlarge-only} {
-      font-size: 5em;
+      font-size: 4.5em;
     }
 
     @media #{$xxlarge-only} {
-      font-size: 7em;
+      font-size: 6em;
     }
 
     &:before {
       content: "katoonyaka";
       display: block;
-      margin-bottom: 0.1em;
-      text-transform: uppercase;
+      text-transform: lowercase;
       font-weight: bold;
     }
 
     &:after {
       content: "creations";
-      font-size: 0.7em;
+      font-size: 0.6em;
     }
   }
 }
