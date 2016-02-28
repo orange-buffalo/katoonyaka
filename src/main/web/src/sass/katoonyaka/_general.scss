@@ -38,7 +38,8 @@ a {
 
 body {
   background-color: $main-bg-color;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   color: #E1D3C8;
 }
 
