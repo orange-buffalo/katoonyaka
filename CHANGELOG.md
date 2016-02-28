@@ -1,5 +1,13 @@
 # Change Log
 
+## [v3.0.4](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.4) (2016-02-28)
+[Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.3...v3.0.4)
+
+**Fixed bugs:**
+
+- artifacts when coming back to the list [\#57](https://github.com/orange-buffalo/katoonyaka/issues/57)
+- scroll event is fired too often [\#38](https://github.com/orange-buffalo/katoonyaka/issues/38)
+
 ## [v3.0.3](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.3) (2016-01-24)
 [Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.2...v3.0.3)
 
