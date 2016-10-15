@@ -16,6 +16,7 @@ import com.twelvemonkeys.imageio.plugins.jpeg.JPEGImageWriter;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -163,6 +164,17 @@ public class UploadCarePhotoStorage implements PhotoStorage {
                     });
 
             return Pair.of(largePhotoImage.getWidth(), largePhotoImage.getHeight());
+        }
+        catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public void downloadPhoto(String fileName, OutputStream photoStream) {
+        File photoFile = new File(photosDir, fileName);
+        try (InputStream sourceStream = new FileInputStream(photoFile)) {
+            IOUtils.copy(sourceStream, photoStream);
         }
         catch (IOException e) {
             throw new IllegalStateException(e);

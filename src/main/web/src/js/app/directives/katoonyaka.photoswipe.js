@@ -1,4 +1,4 @@
-var KatoonyakaPhotoswipe = function ($rootScope, gaService) {
+var KatoonyakaPhotoswipe = function ($rootScope, gaService, photoService) {
     return {
         restrict: "A",
 
@@ -28,18 +28,18 @@ var KatoonyakaPhotoswipe = function ($rootScope, gaService) {
                     var $thumb = $(value);
 
                     var originalPhotoHeight = $thumb.data("height");
-                    var photoHeight = Math.min($rootScope.viewportHeight, originalPhotoHeight, 2048);
+                    var photoHeight = Math.min($rootScope.viewportHeight, originalPhotoHeight);
 
                     var originalPhotoWidth = $thumb.data("width");
                     var photoWidth = Math.round(photoHeight / originalPhotoHeight * originalPhotoWidth);
 
-                    if (photoWidth > 2048) {
-                        photoWidth = 2048;
+                    if (photoWidth > $rootScope.viewportWidth) {
+                        photoWidth = $rootScope.viewportWidth;
                         photoHeight = Math.round(photoWidth / originalPhotoWidth * originalPhotoHeight);
                     }
 
                     psItems.push({
-                        src: $thumb.data("baseUrl") + ".w" + photoWidth + ".jpeg",
+                        src: photoService.getPhotoUrl($thumb.data("baseUrl"), photoWidth),
                         w: photoWidth,
                         h: photoHeight
                     });

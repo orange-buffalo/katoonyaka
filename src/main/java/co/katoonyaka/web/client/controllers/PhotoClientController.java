@@ -53,6 +53,7 @@ public class PhotoClientController {
 
     @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}.{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}.w{width:[0-9]+}.jpeg",
             produces = MediaType.IMAGE_JPEG_VALUE)
+    @Deprecated
     public void loadPhoto(@PathVariable String handiworkUrl,
                           @PathVariable String photoId,
                           @PathVariable Integer width,
@@ -73,6 +74,7 @@ public class PhotoClientController {
 
     @RequestMapping(value = "{handiworkUrl:[A-Za-z0-9-]+}.{photoId:[A-Za-z][A-Za-z][A-Za-z][A-Za-z][A-Za-z]}.{width:[0-9]+}x{height:[0-9]+}.jpeg",
             produces = MediaType.IMAGE_JPEG_VALUE)
+    @Deprecated
     public void loadPhoto(@PathVariable String handiworkUrl,
                           @PathVariable String photoId,
                           @PathVariable Integer width,
@@ -90,6 +92,17 @@ public class PhotoClientController {
         Cover cover = coverRepository.findById(coverId);
         Photo photo = cover.getPhoto();
         loadPhoto(photo, Math.min(DEFAULT_PHOTO_SIZE, photo.getWidth()), null, response);
+    }
+
+    @RequestMapping(value = "{fileName:.+}",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getPhoto(@PathVariable String fileName,
+                          HttpServletResponse response) throws IOException {
+        response.setHeader("cache-control", "public, max-age=31536000");
+        OutputStream stream = response.getOutputStream();
+        photoStorage.downloadPhoto(fileName, stream);
+        stream.flush();
+        stream.close();
     }
 
     private void loadPhoto(Photo photo,

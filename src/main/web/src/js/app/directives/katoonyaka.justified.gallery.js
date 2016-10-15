@@ -1,4 +1,4 @@
-var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
+var KatoonyakaJustifiedGallery = function ($rootScope, $compile, photoService) {
     return {
         restrict: "A",
 
@@ -41,8 +41,8 @@ var KatoonyakaJustifiedGallery = function ($rootScope, $compile) {
                     rowHeight: rowHeight,
                     maxRowHeight: $rootScope.viewportHeight * 3,
                     margin: $rootScope.smallScreen ? 3 : 5,
-                    thumbnailPath: function (photo, width, height) {
-                        return photo.baseUrl + "." + width + "x" + height + ".jpeg";
+                    thumbnailPath: function (photo, width) {
+                      return photoService.getPhotoUrl(photo.baseUrl, width);
                     },
                     getSize: function (photo) {
                         return {width: photo.width, height: photo.height};

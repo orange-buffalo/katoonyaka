@@ -1,4 +1,4 @@
-var KatoonyakaCoverSlides = function ($rootScope, $interval) {
+var KatoonyakaCoverSlides = function ($rootScope, $interval, photoService) {
     return {
         restrict: "A",
 
@@ -29,7 +29,7 @@ var KatoonyakaCoverSlides = function ($rootScope, $interval) {
             $slides.each(function (index, value) {
                 var $slide = $(value);
                 $slide.css("background-image",
-                    "url(http://www.ucarecdn.com/" + $slide.data("photo") + "/-/resize/" + slideWidth + "x/)");
+                    "url(" + photoService.getPhotoUrl($slide.data("baseUrl"), slideWidth) + ")");
 
             });
 

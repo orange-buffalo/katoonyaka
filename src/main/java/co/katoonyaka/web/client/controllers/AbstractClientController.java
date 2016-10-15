@@ -1,5 +1,6 @@
 package co.katoonyaka.web.client.controllers;
 
+import co.katoonyaka.services.ConfigService;
 import co.katoonyaka.services.CoverRepository;
 import co.katoonyaka.web.client.domain.ClientResponseData;
 import co.katoonyaka.web.client.domain.ClientResponseModel;
@@ -24,6 +25,9 @@ public abstract class AbstractClientController<T extends ClientResponseModel> {
 
     @Autowired
     protected CoverRepository coverRepository;
+
+    @Autowired
+    private ConfigService configService;
 
     @RequestMapping
     public String getHtmlContent(Model model, HttpServletRequest request) throws Exception {
@@ -51,6 +55,7 @@ public abstract class AbstractClientController<T extends ClientResponseModel> {
         Map pathVariables = (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         T clientResponseModel = getModel(pathVariables);
         templateModel.addAttribute("model", clientResponseModel);
+        templateModel.addAttribute("photoSizesConfig", configService.getPhotoSizesConfig());
 
         String mainContent = renderFreemarkerTemplate(templateModel, getContentTemplate(), request);
         String title = clientResponseModel.getTitle() + " | Katoonyaka";
