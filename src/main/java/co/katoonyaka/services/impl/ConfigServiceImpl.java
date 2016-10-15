@@ -1,8 +1,10 @@
 package co.katoonyaka.services.impl;
 
+import co.katoonyaka.domain.PhotoSizesConfig;
 import co.katoonyaka.services.ConfigService;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
+import java.util.Arrays;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -28,6 +30,16 @@ public class ConfigServiceImpl implements ConfigService {
     private Collection<String> adminUsers;
 
     private Object configData;
+
+    private final PhotoSizesConfig photoSizesConfig = new PhotoSizesConfig(".", Arrays.asList(
+            new PhotoSizesConfig.PhotoSize("micro", 200),
+            new PhotoSizesConfig.PhotoSize("mini", 300),
+            new PhotoSizesConfig.PhotoSize("tiny", 500),
+            new PhotoSizesConfig.PhotoSize("small", 650),
+            new PhotoSizesConfig.PhotoSize("medium", 1024),
+            new PhotoSizesConfig.PhotoSize("big", 1400),
+            new PhotoSizesConfig.PhotoSize("large", 2048)
+    ));
 
     @PostConstruct
     private void init() {
@@ -56,6 +68,10 @@ public class ConfigServiceImpl implements ConfigService {
     @Override
     public <T> T getConfigValue(String configProperty) {
         return JsonPath.read(configData, "$." + configProperty);
+    }
+
+    public PhotoSizesConfig getPhotoSizesConfig() {
+        return photoSizesConfig;
     }
 
 }

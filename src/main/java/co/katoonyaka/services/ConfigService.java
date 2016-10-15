@@ -1,5 +1,6 @@
 package co.katoonyaka.services;
 
+import co.katoonyaka.domain.PhotoSizesConfig;
 import java.util.Collection;
 
 public interface ConfigService {
@@ -9,5 +10,7 @@ public interface ConfigService {
     Collection<String> getAdminUsers();
 
     <T> T getConfigValue(String configProperty);
+
+    PhotoSizesConfig getPhotoSizesConfig();
 
 }
