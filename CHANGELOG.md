@@ -1,5 +1,13 @@
 # Change Log
 
+## [v3.0.5](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.5) (2016-10-16)
+[Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.4...v3.0.5)
+
+**Notable changes**
+
+- Completely migrated away from Uploadcare to local storage
+- DaWanda shop was added
+
 ## [v3.0.4](https://github.com/orange-buffalo/katoonyaka/tree/v3.0.4) (2016-02-28)
 [Full Changelog](https://github.com/orange-buffalo/katoonyaka/compare/v3.0.3...v3.0.4)
 
