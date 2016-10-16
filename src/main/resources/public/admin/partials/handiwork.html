@@ -4,11 +4,11 @@
   <md-button class="md-raised"
              ngf-multiple="true"
              ngf-select="addPhotos($files)"
-             ngf-accept="'image/*'">Add Photos</md-button>
+             ngf-accept="'image/jpeg'">Add Photos</md-button>
   <md-button class="md-raised"
              type="file"
              ngf-select="setCover($files)"
-             ngf-accept="'image/*'">Set Cover</md-button>
+             ngf-accept="'image/jpeg'">Set Cover</md-button>
   <md-button class="md-raised" ng-click="confirmDeletion()">Delete</md-button>
   <md-button class="md-raised" ng-if="handiwork.draft" ng-click="publish()">Publish</md-button>
   <md-button class="md-raised" ng-if="!handiwork.draft" ng-click="draftify()">Draftify</md-button>
