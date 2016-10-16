@@ -18,23 +18,7 @@ var CoversController = function($scope, ServicesFacade) {
         });
     };
 
-    $scope.startCoverEditing = function(cover) {
-        ServicesFacade.navigationService.navigateToEditCover(cover.id);
-        ServicesFacade.$mdBottomSheet.cancel();
-    };
-
-    $scope.startCoverCreation = function() {
-        ServicesFacade.navigationService.navigateToCreateCover();
-        ServicesFacade.$mdBottomSheet.cancel();
-    };
-
     $scope.publish = function(cover) {
-        if (!cover.photo || !cover.photo.externalId) {
-            ServicesFacade.$mdBottomSheet.cancel();
-            ServicesFacade.notificationService.warn('Add cover photo first!');
-            return;
-        }
-
         cover.draft = false;
         cover.put()
             .then(function() {
@@ -78,53 +62,8 @@ var CoversController = function($scope, ServicesFacade) {
             });
     };
 
-};
-
-var EditCoverController = function($scope, ServicesFacade) {
-
-    ServicesFacade.configService.getConfigValue("uploadcare.publicKey")
-        .then(function (publicKey) {
-            $scope.uploadcarePublicKey = publicKey;
-        });
-
-    function _saveCallback() {
-        ServicesFacade.notificationService.success('Saved!');
-        ServicesFacade.navigationService.navigateToCovers();
-    }
-
-    var coverId = ServicesFacade.$routeParams.coverId;
-    $scope.editMode = !_.isUndefined(coverId);
-
-    if ($scope.editMode) {
-        ServicesFacade.coverService.get(coverId)
-            .then(function(cover) {
-                $scope.selectedCover = cover;
-            });
-    }
-    else {
-        $scope.selectedCover = {
-            draft: true
-        };
-    }
-
-    $scope.cancelEditing = function() {
-        ServicesFacade.navigationService.navigateToCovers();
-    };
-
-    $scope.submitCover = function() {
-        if ($scope.editMode) {
-            $scope.selectedCover.put()
-                .then(_saveCallback);
-        }
-        else {
-            ServicesFacade.coverService.post($scope.selectedCover)
-                .then(_saveCallback);
-        }
-    };
-
-    $scope.onPhotoUploaded = function(fileInfo) {
-        $scope.selectedCover.photo = createUploadcarePhoto(fileInfo);
-        ServicesFacade.notificationService.info(fileInfo.name + " was uploaded, don't forget to save the changes!");
-    }
+  $scope.uploadCover = function (files) {
+    ServicesFacade.uploadService.uploadPhotos(files, "/admin/api/covers", _reloadCovers);
+  }
 
 };

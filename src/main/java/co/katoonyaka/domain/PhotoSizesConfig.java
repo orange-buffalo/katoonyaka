@@ -26,6 +26,17 @@ public class PhotoSizesConfig {
         this.sizes = Collections.unmodifiableSortedSet(sortedSizes);
     }
 
+    public String findSizeName(int width) {
+        PhotoSize result = sizes.first();
+        for (PhotoSize size : sizes) {
+            result = size;
+            if (width < size.getWidthInPx()) {
+                break;
+            }
+        }
+        return result.getName();
+    }
+
     @AllArgsConstructor
     @Getter
     @EqualsAndHashCode

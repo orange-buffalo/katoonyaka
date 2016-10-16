@@ -10,9 +10,6 @@ var NavigationService = function($rootScope, $location) {
             else if (path.indexOf("covers") >= 0) {
                 $rootScope.activeConsole = "Covers Management";
             }
-            else if (path.indexOf("uploadcare") >= 0) {
-                $rootScope.activeConsole = "Uploadcare Storage Management";
-            }
             else {
                 $rootScope.activeConsole = "";
             }
@@ -27,20 +24,8 @@ var NavigationService = function($rootScope, $location) {
         $location.path("/handiworks");
     };
 
-    service.navigateToUploadcare = function() {
-        $location.path("/uploadcare");
-    };
-
-    service.navigateToEditCover = function(coverId) {
-        $location.path("/covers/" + coverId + "/edit");
-    };
-
     service.navigateToEditHandiwork = function(handiworkId) {
         $location.path("/handiworks/" + handiworkId + "/edit");
-    };
-
-    service.navigateToCreateCover = function() {
-        $location.path("/covers/create");
     };
 
     service.navigateToCreateHandiwork = function() {
@@ -105,101 +90,83 @@ var NotificationService = function($mdToast) {
     }
 };
 
-var ServicesFacade = function(Cover, $mdBottomSheet, $location, Handiwork,
-                              NavigationService, $mdToast, $mdDialog, $window,
-                              blockUI, $routeParams, NotificationService, UploadcareService,
-                              ConfigService) {
+var ServicesFacade = function (Cover, $mdBottomSheet, $location, Handiwork, UploadService,
+                               NavigationService, $mdToast, $mdDialog, $window,
+                               blockUI, $routeParams, NotificationService, ConfigService) {
 
-    function _createSuccessNotification(message) {
-        return function() {
-            NotificationService.success(message);
-        }
+  function _createSuccessNotification(message) {
+    return function () {
+      NotificationService.success(message);
     }
+  }
 
-    return {
-        blockUi: blockUI,
-        $mdBottomSheet: $mdBottomSheet,
-        coverService: Cover,
-        $location: $location,
-        navigationService: NavigationService,
-        $mdToast: $mdToast,
-        $mdDialog: $mdDialog,
-        $routeParams: $routeParams,
-        notificationService: NotificationService,
-        handiworkService: Handiwork,
-        createSuccessNotification: _createSuccessNotification,
-        uploadcareService: UploadcareService,
-        $window: $window,
-        configService: ConfigService
-    }
+  return {
+    blockUi: blockUI,
+    $mdBottomSheet: $mdBottomSheet,
+    coverService: Cover,
+    $location: $location,
+    navigationService: NavigationService,
+    $mdToast: $mdToast,
+    $mdDialog: $mdDialog,
+    $routeParams: $routeParams,
+    notificationService: NotificationService,
+    handiworkService: Handiwork,
+    createSuccessNotification: _createSuccessNotification,
+    $window: $window,
+    configService: ConfigService,
+    uploadService: UploadService
+  }
 };
 
-var UploadcareWidget = function (blockUI, NotificationService) {
-    return {
-        restrict: 'A',
-        scope: {
-            onFileUploaded: '&',
-            onAllUploadsCompleted: '&',
-            multipleFiles: '=',
-            publicKey: '='
-        },
-        link: function (scope, element) {
-            function _openUploadCareDialog() {
-                var dialog = uploadcare.openDialog(null, {
-                    imagesOnly: true,
-                    multiple: scope.multipleFiles,
-                    tabs: 'file',
-                    publicKey: scope.publicKey
-                });
+var UploadService = function (Upload, NotificationService, blockUI) {
 
-                dialog.done(function(result) {
-                    blockUI.start();
-                    blockUI.message("Uploading...");
-
-                    var processedFilesCount = 0;
-                    var expectedFilesCount;
-
-                    function _checkIfAllUploaded() {
-                        processedFilesCount++;
-                        if (processedFilesCount == expectedFilesCount) {
-                            scope.onAllUploadsCompleted();
-                            blockUI.stop();
-                        }
-                    }
-
-                    function _listenToFile(file) {
-                        file.done(function(fileInfo) {
-                            scope.$apply(function () {
-                                scope.onFileUploaded({fileInfo: fileInfo});
-                                _checkIfAllUploaded();
-                            });
-                        });
-
-                        file.fail(function(error) {
-                            scope.$apply(function () {
-                                NotificationService.error(error);
-                                _checkIfAllUploaded();
-                            });
-                        })
-                    }
-
-                    if (scope.multipleFiles) {
-                        var selectedFiles = result.files();
-                        expectedFilesCount = selectedFiles.length;
-                        angular.forEach(selectedFiles, function(file) {
-                            _listenToFile(file);
-                        });
-                    }
-                    else {
-                        expectedFilesCount = 1;
-                        _listenToFile(result);
-                    }
-                });
-            }
-
-            element.on("click", _openUploadCareDialog);
+  function _uploadPhoto(files, currentFile, url, callback) {
+      if (currentFile == files.length) {
+        NotificationService.success("All photos have been uploaded!");
+        if (callback) {
+          callback();
         }
-    };
+      }
+      else {
+        var file = files[currentFile];
+        file.upload = Upload.upload({
+          url: url,
+          data: {file: file}
+        });
+
+        file.upload.then(function () {
+          _uploadPhoto(files, currentFile + 1, url, callback);
+        }, null, function (evt) {
+          var progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+          if (progress < 100) {
+            if (files.length == 1) {
+              blockUI.message(file.name + " is uploading.. " + progress + "% done..");
+            }
+            else {
+              blockUI.message("Uploading " + (currentFile + 1) + " of " + files.length +
+                " (" + file.name + " " + progress + "% done..)");
+            }
+          }
+          else {
+            if (files.length == 1) {
+              blockUI.message(file.name + " uploaded, processing on server..");
+            }
+            else {
+              blockUI.message("Uploading " + (currentFile + 1) + " of " + files.length +
+                " (" + file.name + " is transferred, processing on server..)");
+            }
+          }
+        });
+      }
+  }
+
+  return {
+    uploadPhotos: function (files, url, callback) {
+      if (files && files.length) {
+        _uploadPhoto(files, 0, url, callback);
+      }
+    }
+  }
 };
 
 var HandiworkService = function(Restangular, blockUI, $q) {
@@ -238,14 +205,6 @@ function dndMove(dndIndex, item, items) {
     items.splice(dndIndex, 0, items.splice(currentIndex, 1)[0]);
 }
 
-function createUploadcarePhoto(fileInfo) {
-    return {
-        externalId: fileInfo.uuid,
-        width: fileInfo.originalImageInfo.width,
-        height: fileInfo.originalImageInfo.height
-    };
-}
-
 var CoverService = function(Restangular, blockUI, $q) {
     var coversRestangular = Restangular.all("covers");
 
@@ -268,10 +227,6 @@ var CoverService = function(Restangular, blockUI, $q) {
     };
 
     return coversRestangular;
-};
-
-var UploadcareService = function(Restangular) {
-    return Restangular.all("uploadcare");
 };
 
 var ConfigService = function($http, $q, blockUI) {

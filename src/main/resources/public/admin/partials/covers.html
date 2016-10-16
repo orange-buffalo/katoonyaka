@@ -1,6 +1,8 @@
 <div layout="row" layout-align="end center">
     <md-button class="md-raised md-primary"
-               ng-click="startCoverCreation()">
+               type="file"
+               ngf-select="uploadCover($files)"
+               ngf-accept="'image/*'">
         Add Cover
     </md-button>
 </div>
@@ -15,12 +17,14 @@
      dnd-horizontal-list="true"
      dnd-drop="moveCover(index, item)">
 
-    <div flex="33"
+    <div flex="25"
          dnd-draggable="cover"
          ng-repeat="cover in covers">
 
         <md-card>
-            <img ng-src="http://www.ucarecdn.com/{{cover.photo.externalId ? cover.photo.externalId : '86946809-2435-4fb3-b7cb-7193958f1756' }}/-/scale_crop/600x300/center/">
+            <a href="/photos/cover.{{ cover.id }}.big.jpeg" target="_blank">
+                <img ng-src="/photos/cover.{{ cover.id }}.small.jpeg">
+            </a>
             <md-card-content>
                 <div class="md-toolbar-tools">
                     <span ng-if="cover.draft"

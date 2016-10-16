@@ -2,17 +2,13 @@
   <md-button ng-click="navigateToHandiworks()">Back to list</md-button>
   <md-button ng-click="preview()">Preview</md-button>
   <md-button class="md-raised"
-             uploadcare-widget
-             data-multiple-files="true"
-             data-public-key="uploadcarePublicKey"
-             on-all-uploads-completed="onAllPhotosUploaded()"
-             on-file-uploaded="onPhotoUploaded(fileInfo)">Add Photos</md-button>
+             ngf-multiple="true"
+             ngf-select="addPhotos($files)"
+             ngf-accept="'image/*'">Add Photos</md-button>
   <md-button class="md-raised"
-             uploadcare-widget
-             data-multiple-files="false"
-             data-public-key="uploadcarePublicKey"
-             on-all-uploads-completed="onAllPhotosUploaded()"
-             on-file-uploaded="onCoverUploaded(fileInfo)">Set Cover</md-button>
+             type="file"
+             ngf-select="setCover($files)"
+             ngf-accept="'image/*'">Set Cover</md-button>
   <md-button class="md-raised" ng-click="confirmDeletion()">Delete</md-button>
   <md-button class="md-raised" ng-if="handiwork.draft" ng-click="publish()">Publish</md-button>
   <md-button class="md-raised" ng-if="!handiwork.draft" ng-click="draftify()">Draftify</md-button>
@@ -25,8 +21,8 @@
 
 <p class="handiwork-summary" flex="50">
     <md-card class="handiwork-cover" ng-if="handiwork.cover">
-        <a ng-href="http://www.ucarecdn.com/{{ handiwork.cover.externalId }}/" target="_blank">
-            <img ng-src="http://www.ucarecdn.com/{{ handiwork.cover.externalId }}/-/preview/300x300/">
+        <a ng-href="/photos/{{ handiwork.url }}.{{ handiwork.cover.id }}.big.jpeg" target="_blank">
+            <img ng-src="/photos/{{ handiwork.url }}.{{ handiwork.cover.id }}.micro.jpeg">
         </a>
         <md-card-content layout="row">
             <span flex></span>
@@ -60,13 +56,12 @@
      dnd-horizontal-list="true"
      dnd-drop="movePhoto(index, item)">
 
-  <div flex="33"
+  <div flex="25"
        dnd-draggable="photo"
        ng-repeat="photo in handiwork.photos">
 
     <md-card>
-      <img
-          ng-src="http://www.ucarecdn.com/{{ photo.externalId }}/-/scale_crop/300x150/center/">
+      <img ng-src="/photos/{{ handiwork.url }}.{{ photo.id }}.small.jpeg">
       <md-card-content>
           <div class="md-toolbar-tools">
               <span flex></span>

@@ -20,9 +20,6 @@
                     <#--sharing with you the results of my efforts :)</p>-->
             <#--</section>-->
 
-<#-- todo shops links to be included in this section -->
-<#--<#include "utils.ftl"/>-->
-
 <#--<div class="shops-section">-->
     <#--<h1>Buy from katoonyaka</h1>-->
 

@@ -33,10 +33,6 @@ function _configKatoonyakaAdmin($routeProvider, $mdIconProvider, $httpProvider,
             templateUrl: '/admin/partials/edit-cover.html',
             controller: 'EditCoverController'
         }).
-        when('/uploadcare', {
-            templateUrl: '/admin/partials/uploadcare.html',
-            controller: 'UploadcareController'
-        }).
         otherwise({
             redirectTo: '/handiworks'
         });
@@ -48,7 +44,6 @@ function _configKatoonyakaAdmin($routeProvider, $mdIconProvider, $httpProvider,
         .icon('publish-button', '/admin/img/bullhorn.svg', 24)
         .icon('handiwork-button', '/admin/img/heart.svg', 24)
         .icon('cover-button', '/admin/img/images.svg', 24)
-        .icon('uploadcare-button', '/admin/img/cloud.svg', 24)
         .icon('mainmenu-button', '/admin/img/mainmenu-button.svg', 24)
         .icon('info', '/admin/img/info.svg', 24)
         .icon('error', '/admin/img/error.svg', 24)
@@ -65,12 +60,6 @@ function _configKatoonyakaAdmin($routeProvider, $mdIconProvider, $httpProvider,
 
     RestangularProvider.setBaseUrl("/admin/api/");
     RestangularProvider.setDefaultHttpFields({cache: false});
-    RestangularProvider.addElementTransformer('uploadcare', true, function(uploadcare) {
-        uploadcare.addRestangularMethod('refresh', 'get', 'refresh');
-        uploadcare.addRestangularMethod('fix', 'get', 'fix');
-        uploadcare.addRestangularMethod('load', 'get', '');
-        return uploadcare;
-    });
 }
 
 var controllers = {
@@ -78,8 +67,6 @@ var controllers = {
     HandiworkController: HandiworkController,
     EditHandiworkController: EditHandiworkController,
     CoversController: CoversController,
-    EditCoverController: EditCoverController,
-    UploadcareController: UploadcareController,
     NavigationController: NavigationController
 };
 
@@ -90,20 +77,19 @@ var factories = {
     Handiwork: HandiworkService,
     ServicesFacade: ServicesFacade,
     NotificationService: NotificationService,
-    UploadcareService: UploadcareService,
-    ConfigService: ConfigService
+    ConfigService: ConfigService,
+    UploadService: UploadService
 };
 
 angular.module('katoonyakaAdminApp',
         ['ngMaterial', 'ngRoute', 'ngResource', 'blockUI', 'ngMessages', 'dndLists',
-            'ngSanitize', 'restangular', 'data-table']
+            'ngSanitize', 'restangular', 'ngFileUpload']
     )
     .filter('nl2br', function() {
         return function (text) {
             return text ? text.replace(/\n/g, '<br>') : '';
         }
     })
-    .directive('uploadcareWidget', UploadcareWidget)
     .config(_configKatoonyakaAdmin)
     .factory(factories)
     .controller(controllers)

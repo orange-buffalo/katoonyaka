@@ -32,16 +32,16 @@ var HandiworksController = function($scope, ServicesFacade) {
 
 var HandiworkController = function($scope, ServicesFacade) {
 
-    ServicesFacade.configService.getConfigValue("uploadcare.publicKey")
-        .then(function (publicKey) {
-            $scope.uploadcarePublicKey = publicKey;
-        });
+  var handiworkId = ServicesFacade.$routeParams.handiworkId;
 
-    var handiworkId = ServicesFacade.$routeParams.handiworkId;
+  function _reloadHandiwork() {
     ServicesFacade.handiworkService.get(handiworkId)
-        .then(function(handiwork) {
-            $scope.handiwork = handiwork;
-        });
+      .then(function (handiwork) {
+        $scope.handiwork = handiwork;
+      });
+  }
+
+  _reloadHandiwork();
 
     $scope.draftify = function() {
         $scope.handiwork.draft = true;
@@ -77,23 +77,15 @@ var HandiworkController = function($scope, ServicesFacade) {
         $scope.handiwork.put().then(ServicesFacade.createSuccessNotification('Changes are saved!'));
     };
 
-    $scope.onPhotoUploaded = function(fileInfo) {
-        $scope.handiwork.photos.push(createUploadcarePhoto(fileInfo));
-    };
+  $scope.setCover = function (files) {
+    ServicesFacade.uploadService.uploadPhotos(
+      files, '/admin/api/handiworks/' + $scope.handiwork.id + "/cover", _reloadHandiwork);
+  };
 
-    $scope.onAllPhotosUploaded = function() {
-        $scope.handiwork.put().then(function() {
-            ServicesFacade.handiworkService.get($scope.handiwork.id)
-                .then(function(handiwork) {
-                    $scope.handiwork = handiwork;
-                    ServicesFacade.notificationService.success('Uploaded and saved!')
-                });
-        });
-    };
-
-    $scope.onCoverUploaded = function(fileInfo) {
-        $scope.handiwork.cover = createUploadcarePhoto(fileInfo);
-    };
+  $scope.addPhotos = function (files) {
+    ServicesFacade.uploadService.uploadPhotos(
+      files, '/admin/api/handiworks/' + $scope.handiwork.id + "/photo", _reloadHandiwork);
+  };
 
     function _hasCover() {
         return !_.isUndefined($scope.handiwork.cover) &&

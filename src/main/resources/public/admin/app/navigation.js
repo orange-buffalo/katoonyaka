@@ -10,11 +10,6 @@ var NavigationController = function($scope, NavigationService, $mdBottomSheet) {
         $mdBottomSheet.hide();
     };
 
-    $scope.goToUploadcare = function() {
-        NavigationService.navigateToUploadcare();
-        $mdBottomSheet.hide();
-    };
-
     $scope.showMenu = function() {
         $mdBottomSheet.show({
             templateUrl: '/admin/partials/menu-navigation.html',
