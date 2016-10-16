@@ -100,3 +100,7 @@ md-card .draft-label {
   max-height: 100px;
   object-fit: cover;
 }
+
+.link-cursor {
+  cursor: pointer;
+}

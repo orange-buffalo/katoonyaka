@@ -19,8 +19,9 @@
        ng-repeat="handiwork in handiworks">
 
     <md-card>
-      <img
-          ng-src="/photos/{{ handiwork.url }}.{{ handiwork.cover.id }}.small.jpeg">
+      <img class="link-cursor"
+           ng-src="/photos/{{ handiwork.url }}.{{ handiwork.cover.id }}.small.jpeg"
+           ng-click="showHandiwork(handiwork)">
       <md-card-content>
         <div class="md-toolbar-tools">
             <span ng-if="handiwork.draft"
