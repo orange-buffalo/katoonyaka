@@ -21,7 +21,7 @@ import java.util.HashSet;
 @Slf4j
 public class ConfigServiceImpl implements ConfigService {
 
-    private static final String CONFIG_FILE_PATH = System.getProperty("KATOONYAKA_HOME") + "/config.js";
+    private static final String CONFIG_FILE_PATH = System.getenv("KATOONYAKA_HOME") + "/config.js";
 
     @Getter
     private boolean devMode;

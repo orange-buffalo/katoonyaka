@@ -41,7 +41,7 @@ public class PhotoStorageImpl implements PhotoStorage {
     public PhotoStorageImpl(ConfigService configService) {
         this.configService = configService;
 
-        photosDir = new File(System.getProperty("KATOONYAKA_HOME") + "/photos");
+        photosDir = new File(System.getenv("KATOONYAKA_HOME") + "/photos");
 
         if (!photosDir.exists()) {
             throw new IllegalStateException("Photos directory does not exist");
