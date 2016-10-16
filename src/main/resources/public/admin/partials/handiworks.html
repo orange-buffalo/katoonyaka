@@ -18,10 +18,8 @@
        dnd-draggable="handiwork"
        ng-repeat="handiwork in handiworks">
 
-    <md-card>
-      <img class="link-cursor"
-           ng-src="/photos/{{ handiwork.url }}.{{ handiwork.cover.id }}.small.jpeg"
-           ng-click="showHandiwork(handiwork)">
+    <md-card class="link-cursor" ng-click="showHandiwork(handiwork)">
+      <img ng-src="/photos/{{ handiwork.url }}.{{ handiwork.cover.id }}.small.jpeg">
       <md-card-content>
         <div class="md-toolbar-tools">
             <span ng-if="handiwork.draft"
@@ -30,14 +28,6 @@
             </span>
 
           <span class="title">{{ handiwork.name }}</span>
-
-          <span flex></span>
-
-          <md-button class="md-icon-button"
-                     aria-label="Details"
-                     ng-click="showHandiwork(handiwork)">
-            <md-icon md-svg-icon="open"></md-icon>
-          </md-button>
         </div>
 
       </md-card-content>
