@@ -19,7 +19,7 @@ import java.util.Collections;
 
 public final class GoogleAuthHelper {
 
-	private static final String CALLBACK_URI = "http://katoonyaka.co/admin/oauth";
+	private static final String CALLBACK_URI = "https://katoonyaka.co/admin/oauth";
 	private static final Collection<String> SCOPES = Collections.singleton("https://www.googleapis.com/auth/userinfo.email");
 	private static final String USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo";
 	private static final JsonFactory JSON_FACTORY = new JacksonFactory();

@@ -30,7 +30,7 @@ public class SeoController {
     @RequestMapping(value = {"/sitemap", "/sitemap.xml"}, produces = {MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     public SiteMap siteMap() {
-        String baseUrl = "http://katoonyaka.co/";
+        String baseUrl = "https://katoonyaka.co/";
         SiteMap siteMap = new SiteMap();
         SiteMapUrl homeUrl = new SiteMapUrl(baseUrl);
 

@@ -1,3 +1,3 @@
-Sitemap: http://katoonyaka.co/sitemap.xml
+Sitemap: https://katoonyaka.co/sitemap.xml
 User-agent:*
 Disallow:

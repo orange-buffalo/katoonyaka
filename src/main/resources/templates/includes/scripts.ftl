@@ -3,7 +3,7 @@
 
   var PHOTO_SIZES = [<#list photoSizesConfig.sizes as photoSize>{name:'${photoSize.name}',width:${photoSize.widthInPx?c}},</#list>];
 
-  loadScript("http://code.jquery.com/jquery-1.11.3.min.js", function () {
+  loadScript("https://code.jquery.com/jquery-1.11.3.min.js", function () {
       loadScript("https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js", function () {
           loadScript("/static/js/katoonyaka.${katoonyakaVersion}.min.js");
       });

@@ -12,8 +12,8 @@
 
         <meta property="og:title" content="${responseData.title}"/>
         <meta property="og:description" content="${responseData.metaDescription!""}"/>
-        <meta property="og:url" content="http://katoonyaka.co/${responseData.relativeUrl}"/>
-        <meta property="og:image" content="http://katoonyaka.co/${responseData.relativeImageUrl}"/>
+        <meta property="og:url" content="https://katoonyaka.co/${responseData.relativeUrl}"/>
+        <meta property="og:image" content="https://katoonyaka.co/${responseData.relativeImageUrl}"/>
         <meta property="og:type" content="website"/>
 
         <link rel="icon" type="image/png" href="/static/img/favicon.png">
