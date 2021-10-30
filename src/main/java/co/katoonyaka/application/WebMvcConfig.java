@@ -3,11 +3,7 @@ package co.katoonyaka.application;
 import co.katoonyaka.utils.KatoonyakaObjectMapper;
 import co.katoonyaka.web.admin.interceptors.SecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -28,12 +24,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
                 .addPathPatterns("/admin/**");
     }
 
-    @Bean
-    public HttpMessageConverters customConverters() {
-        HttpMessageConverter<?> jackson2HttpMessageConverter =
-                new MappingJackson2HttpMessageConverter(objectMapper);
-        return new HttpMessageConverters(jackson2HttpMessageConverter);
-    }
+//    @Bean
+//    public HttpMessageConverters customConverters() {
+//        HttpMessageConverter<?> jackson2HttpMessageConverter =
+//                new MappingJackson2HttpMessageConverter(objectMapper);
+//        return new HttpMessageConverters(jackson2HttpMessageConverter);
+//    }
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {

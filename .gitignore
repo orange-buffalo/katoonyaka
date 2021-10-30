@@ -12,3 +12,4 @@ taskArtifacts.bin
 .sass-cache
 dist
 node_modules
+.gradle
